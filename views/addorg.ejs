@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+
+
+        });
+        function subForm(){
+            $.post( "/org/add", { "org[name]": "John", "org[description]": "2pm"
+                                    ,"org[phone]":13988228888,"org[address]":"北京" })
+                    .done(function( data ) {
+                        console.log(data);
+            });
+        }
+    </script>
+</head>
+<body>
+<h1><%= title %></h1>
+
+<form method="post" action="/org/add">
+    <p>公司名称</p><input type="text" name="org[name]" placeholder="公司名称"/>
+    <p>简介</p><input type="text" name="org[description]" placeholder="简介"/>
+    <p>电话</p><input type="text" name="org[phone]" placeholder="电话"/>
+    <p>地址</p><input type="text" name="org[address]" placeholder="地址"/>
+    <input type="button" value="保存" onclick="javascript:subForm();"/>
+</form>
+</body>
+</html>
