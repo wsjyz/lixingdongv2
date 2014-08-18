@@ -9,7 +9,7 @@
 
 
         });
-        function subForm(){
+        function subForm(){//新增企业
             $.post( "/org/add", { "org[name]": "John", "org[description]": "2pm"
                                     ,"org[phone]":13988228888,"org[address]":"北京" })
                     .done(function( data ) {

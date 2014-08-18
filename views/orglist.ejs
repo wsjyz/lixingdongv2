@@ -10,7 +10,13 @@
 
         });
         function findOrgList(){
+            //入驻企业json列表
             $.ajax( "/org/find-org-list" )
+                    .done(function(data) {
+                        console.log(data);
+                    });
+            //入驻企业总数
+            $.ajax( "/org/totalCount" )
                     .done(function(data) {
                         console.log(data);
                     });

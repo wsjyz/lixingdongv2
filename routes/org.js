@@ -41,6 +41,13 @@ router.get('/find-org-list', function(req, res) {
 
 });
 
+router.get('/totalCount',function(req, res){
+    OrgModel.totalCount(function(err,count){
+        if(err) return next(err);
+        res.send({ totalCount: count });
+    })
+});
+
 
 
 module.exports = router;
