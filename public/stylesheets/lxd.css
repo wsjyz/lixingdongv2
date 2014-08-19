@@ -1,0 +1,32 @@
+
+.blackArea{width: 100%;background-color: #0a0a0a;height: 96px;}
+
+ul.timeline {
+	list-style-type: none;
+	background: url("../res/img/version_line.png") repeat-y scroll 120px 0 transparent;
+	margin: 50px 0;
+	padding: 0;
+}
+ ul.timeline li {
+  	position: relative;
+ 	/*margin-bottom: 20px;*/
+ }
+ 
+ ul.timeline li .number {
+	position: absolute;
+	background: url("../images/star.png") no-repeat scroll 0 0 transparent;
+	width: 40px;
+	height: 40px;
+	margin-left: 4%;
+	line-height: 56px;
+	text-align: center;
+	color: #fff;
+	font-size: 18px;
+}
+.cooplist{text-align: center;overflow: auto;}
+
+.content{margin-left: 9.6%;padding-left:10%;padding-bottom:20px;border-left:solid;border-left-style:ridge;border-width: 2px;}
+
+.line{width:100%;height:1px; background:#E0E0E0;margin:10px 0}
+
+.submit{font-size: 34px;font-weight: bold;height:100px;background:url("../images/submit.png"); }

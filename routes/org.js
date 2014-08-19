@@ -48,6 +48,10 @@ router.get('/totalCount',function(req, res){
     })
 });
 
+//赞助企业入驻
+router.get('/to-orgSettled', function(req, res) {
+    res.render('orgSettled', { title: '赞助企业入驻' });
+});
 
 
 module.exports = router;

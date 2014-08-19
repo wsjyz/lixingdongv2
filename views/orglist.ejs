@@ -1,30 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="address=no">
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script src="/javascripts/jquery-2.0.0.min.js"></script>
-    <script type="text/javascript">
-        $(function(){
 
-
-        });
-        function findOrgList(){
-            //入驻企业json列表
-            $.ajax( "/org/find-org-list" )
-                    .done(function(data) {
-                        console.log(data);
-                    });
-            //入驻企业总数
-            $.ajax( "/org/totalCount" )
-                    .done(function(data) {
-                        console.log(data);
-                    });
-        }
-    </script>
+    <link rel="stylesheet" href="/stylesheets/common.css">
+    <link rel="stylesheet" href="/stylesheets/lxd.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/ionic.min.css">
 </head>
 <body>
-<h1><%= title %></h1>
-<input type="button" value="获取入驻企业列表" onclick="javascript:findOrgList();"/>
+<img style="width:100%;" src="/images/top.png" alt="">
+<div class="blackArea"></div>
+<img style="width:100%;height:150px;" src="/images/title.png" alt="">
+<div class="cooplist">
+    <ul class="timeline" id="orgs">
+        <li>
+            <div class="number"></div>
+            <div class="content">
+                <img src="/images/orgs/ali.png" alt="赞助企业" style="width:100%;">
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="row row-bottom" style="background:url('/images/foot.png') no-repeat center center;background-size: cover;">
+    <div class="row">
+        <div class="col" style="padding-top: 25%;"><span id="time">2014-08-08</span></div>
+        <div class="col col-50"><img id="toSettled" src="/images/settled_default.png" alt="入驻"/></div>
+        <div class="col" style="padding-top: 25%;"><span class="text-center" id="count"></span></div>
+    </div>
+</div>
+<div class="row blackArea"></div>
 </body>
+<script src="/javascripts/jquery-2.0.0.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        findOrgList();
+        $('#toSettled').click(function(){
+            location.href = '/org/to-orgSettled';
+        })
+    });
+    function findOrgList(){
+        //入驻企业json列表
+        $.get('/org/find-org-list',function(data){
+            console.log(data);
+            var lis=[],li;
+            $.each(data, function(i,v){
+                console.log(v);
+                li = '<li><div class="number"></div>' +
+                        '<div class="content"><img src="/images/orgs/'+ v.id+'.png" title="'+v.name+'" style="width:100%;">' +
+                        '</div></li>';
+                lis.push(li);
+            })
+            $('#orgs').append(lis);
+        } )
+        //入驻企业总数
+        $.ajax( "/org/totalCount" )
+            .done(function(data) {
+                console.log(data);
+                $('#count').text(data.totalCount+"家企业");
+            });
+        $('#time').text((new Date()).toLocaleDateString().replace(/[^\d]/g,'.'));
+    }
+</script>
 </html>
