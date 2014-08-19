@@ -10,14 +10,18 @@ var router = express.Router();
 router.get('/', function(req, res) {
     res.render('index', { title: 'Express' });
 });
-router.get('/to-add', function(req, res) {
-    res.render('addorg', { title: '公司入驻' });
+router.get('/to-add/:type', function(req, res) {
+    var orgTypeValue = req.param('type');
+    var titleValue = '姓名';
+    if(orgTypeValue == 'sponsors') titleValue = '单位';
+    res.render('addorg', { title: titleValue,orgType: orgTypeValue});
 });
 
 router.post('/add',function(req, res,next) {
     var orgModel = new OrgModel(req.body.org);
     orgModel.showOrder = 0;
     orgModel.followUser = 0;
+    orgModel.createTime = new Date().getTime();
     orgModel.save(function(err){
 
         if(err) return next(err);
@@ -27,12 +31,13 @@ router.post('/add',function(req, res,next) {
     });
 });
 
-router.get('/to-list', function(req, res) {
-    res.render('orglist', { title: '赞助企业' });
+router.get('/to-list/:type', function(req, res) {
+    var orgTypeValue = req.param('type');
+    res.render(orgTypeValue+'list', { title: '赞助企业',orgType: orgTypeValue });
 });
 
-router.get('/find-org-list', function(req, res) {
-    OrgModel.list(function(err,orgs){
+router.get('/find-org-list/:type', function(req, res) {
+    OrgModel.list(req.param('type'),function(err,orgs){
 
         if(err) return next(err);
 
@@ -41,8 +46,8 @@ router.get('/find-org-list', function(req, res) {
 
 });
 
-router.get('/totalCount',function(req, res){
-    OrgModel.totalCount(function(err,count){
+router.get('/totalCount/:type',function(req, res){
+    OrgModel.totalCount(req.param('type'),function(err,count){
         if(err) return next(err);
         res.send({ totalCount: count });
     })
