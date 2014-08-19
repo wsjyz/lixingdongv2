@@ -44,12 +44,12 @@
     $(function(){
         findOrgList();
         $('#toSettled').click(function(){
-            location.href = '/org/to-orgSettled';
+            location.href = '/org/to-add/<%=orgType%>';
         })
     });
     function findOrgList(){
         //入驻企业json列表
-        $.get('/org/find-org-list',function(data){
+        $.get('/org/find-org-list/<%=orgType%>',function(data){
             console.log(data);
             var lis=[],li;
             $.each(data, function(i,v){
@@ -62,7 +62,7 @@
             $('#orgs').append(lis);
         } )
         //入驻企业总数
-        $.ajax( "/org/totalCount" )
+        $.ajax( "/org/totalCount/<%=orgType%>" )
             .done(function(data) {
                 console.log(data);
                 $('#count').text(data.totalCount+"家企业");
