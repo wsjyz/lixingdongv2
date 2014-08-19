@@ -7,10 +7,9 @@
     <script type="text/javascript">
         $(function(){
 
-
         });
         function subForm(){//新增企业
-            $.post( "/org/add", { "org[name]": "John", "org[description]": "2pm"
+            $.post( "/org/add", { "org[name]": "John", "org[type]": "sponsors","org[description]": "2pm"
                                     ,"org[phone]":13988228888,"org[address]":"北京" })
                     .done(function( data ) {
                         console.log(data);
@@ -20,9 +19,9 @@
 </head>
 <body>
 <h1><%= title %></h1>
-
 <form method="post" action="/org/add">
-    <p>公司名称</p><input type="text" name="org[name]" placeholder="公司名称"/>
+    <p><%= title %></p><input type="text" name="org[name]" placeholder="<%= title %>"/>
+    <input type="hidden" name="org[type]" value="<%= orgType %>"/>
     <p>简介</p><input type="text" name="org[description]" placeholder="简介"/>
     <p>电话</p><input type="text" name="org[phone]" placeholder="电话"/>
     <p>地址</p><input type="text" name="org[address]" placeholder="地址"/>
