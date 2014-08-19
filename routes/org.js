@@ -36,7 +36,7 @@ router.get('/to-list/:type', function(req, res) {
     res.render(orgTypeValue+'list', { title: '赞助企业',orgType: orgTypeValue });
 });
 
-router.get('/find-org-list/:type', function(req, res) {
+router.get('/find-org-list/:type', function(req, res,next) {
     OrgModel.list(req.param('type'),function(err,orgs){
 
         if(err) return next(err);
@@ -46,7 +46,7 @@ router.get('/find-org-list/:type', function(req, res) {
 
 });
 
-router.get('/totalCount/:type',function(req, res){
+router.get('/totalCount/:type',function(req, res,next){
     OrgModel.totalCount(req.param('type'),function(err,count){
         if(err) return next(err);
         res.send({ totalCount: count });
