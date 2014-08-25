@@ -5,9 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+
 var routes = require('./routes/index');
 var org = require('./routes/org');
 var users = require('./routes/users');
+var goods = require('./routes/goods');
 
 var app = express();
 
@@ -25,6 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/org',org);
+app.use('/goods',goods);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

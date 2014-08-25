@@ -2,7 +2,7 @@
  * Created by dam on 2014/8/13.
  */
 var express = require('express');
-var OrgModel = require('../lib/orgModel');
+var OrgModel = require('../lib/dataModel');
 
 var router = express.Router();
 

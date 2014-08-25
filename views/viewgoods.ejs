@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+
+
+        });
+        function viewGoods(){
+            $.ajax( "/goods/find-goods-by-id/7dca57002c1711e4994945bcd6eb2610" )
+                    .done(function(data) {
+                        console.log(data);
+                    });
+
+        }
+    </script>
+</head>
+<body>
+<h1><%= title %></h1>
+<input type="button" value="获取竞拍品信息" onclick="javascript:viewGoods();"/>
+</body>
+</html>
