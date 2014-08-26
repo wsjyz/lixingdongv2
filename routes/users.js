@@ -30,5 +30,16 @@ router.post('/add-price', function(req, res,next) {
 
     });
 });
+router.get('/to-history', function(req, res,next) {
+    res.render('history',{title:"拍卖纪录"});
 
+});
+router.get('/find-history-price', function(req, res,next) {
+    DataModel.findUserPriceHistory(req.param('mobile'),function(err,items){
+        if(err) return next(err);
+        res.send(items);
+
+    });
+
+});
 module.exports = router;
