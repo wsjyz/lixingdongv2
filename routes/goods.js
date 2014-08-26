@@ -85,5 +85,11 @@ router.get('/find-goods-by-id/:id',function(req, res,next){
     });
 });
 
+router.get('/find-highest-price', function(req, res,next) {
+    DataModel.findHighestPrice(req.param('id'),function(err,price){
+        if(err) return next(err);
 
+        res.send({highestPrice:price});
+    });
+});
 module.exports = router;
