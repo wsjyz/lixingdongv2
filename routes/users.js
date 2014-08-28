@@ -42,4 +42,14 @@ router.get('/find-history-price', function(req, res,next) {
     });
 
 });
+router.post('delete-price',function(req,res,next){
+    var record = req.body.record;
+    delete record.goods;
+    delete record.result;
+    var data = new DataModel(record);
+    data.removeFromList(function(err){
+        if(err) return next(err);
+        res.send("SUCCESS");
+    })
+});
 module.exports = router;
