@@ -11,16 +11,18 @@ var app = angular.module('lxd', []);
 //赞助企业
 app.controller('SupportEnterprisesCtrl',['$scope', '$http', function ($scope, $http) {
 
+//    var type = $remote.
+
  	$scope.join = false;
  	$scope.date = (new Date()).toLocaleDateString().replace(/[^\d]/g,'.');
 
 	//加载数据
- 	$http.get('/org/find-org-list/<%=orgType%>').success(function(data){
+ 	$http.get('/org/find-org-list/sponsors').success(function(data){
  		$scope.items = data;	
  	});
 
     //入驻企业总数
-    $http.get( "/org/totalCount/<%=orgType%>").success(function(data){
+    $http.get( "/org/totalCount/sponsors").success(function(data){
         $scope.num = data.totalCount;
     });
 

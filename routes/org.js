@@ -37,6 +37,7 @@ router.get('/to-list/:type', function(req, res) {
 });
 
 router.get('/find-org-list/:type', function(req, res,next) {
+    console.log(req.param('type'));
     OrgModel.list(req.param('type'),function(err,orgs){
 
         if(err) return next(err);

@@ -1,81 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-touch-fullscreen" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="format-detection" content="address=no">
-    <title><%= title %></title>
+<html lang="zh-cn" ng-app="lxd">
+  <head>
+    <title>赞助企业</title>
+	  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="/css/main.css"></link>
 
-    <link rel="stylesheet" href="/stylesheets/common.css">
-    <link rel="stylesheet" href="/stylesheets/lxd.css">
-    <link rel="stylesheet" href="/stylesheets/style.css">
-    <link rel="stylesheet" href="/stylesheets/ionic.min.css">
-</head>
-<body>
-<!--<div class="grayArea"></div>-->
-<!--<div class="blackArea"></div>-->
-<img style="width:100%;height:150px;" src="/images/title.png" alt="">
-<div class="cooplist">
-    <ul class="timeline" id="orgs">
-        <li>
-            <div class="number"></div>
-            <div class="content">
-                <div class="fixdiv round"><img src="/images/orgs/ali.png" alt="赞助企业" style="width:100%;height:160px;"></div>
-                <div class="fixdiv"><img src="/images/top.png" class="img"></div>
-                <div class="fixdiv" style="left: 50%;height:20px;">sdfs</div>
+    <script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
+    <script src="/js/angular.min.js"></script>
+  	<script src="/js/bootstrap.min.js"></script>
+    <script src="/js/main.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+        <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  <div class="container text-center col-xs-12" ng-controller="SupportEnterprisesCtrl">
+      <div class="header-image  row">
+        <img ng-src="/img/supportEnterprises/header.png" />
+      </div>
+      <div class="content">
+          <div class="item-single row" ng-repeat="item in items">
+            <div class="order-star"><img ng-src="/img/supportEnterprises/star.png"></div>
+            <div class="item-img">
+              <img ng-src="/images/orgs/{{item.id}}.png"  title="{{item.name}}" class="img-rounded" />
             </div>
-        </li>
-    </ul>
-</div>
-<div style="position:fixed;left:0;bottom:0;right:0;height:130px;width:100%;z-index: 3;">
-    <div style="position:absolute;">
-        <img src="/images/foot.png" alt="" style="width:100%;height:103px;margin-top:27px;"/>
-    </div>
-    <div class="row" style="z-index: 999;position:relative;">
-        <div class="col" style="padding-top: 90px;padding-left:5.6%;"><span id="time" class="botfont">2014-08-08</span></div>
-        <div><img id="toSettled" src="/images/settled_default.png" style="z-index: 999;" alt="入驻"/></div>
-        <div class="col" style="padding-top: 90px;"><span class="text-center botfont" id="count"></span></div>
-    </div>
-</div>
-</body>
-<script src="/javascripts/jquery-2.0.0.min.js"></script>
-<script type="text/javascript">
-    $(function(){
-        findOrgList();
-        $('#toSettled').click(function(){
-            $('#toSettled').attr('src','/images/settled.png');
-            location.href = '/org/to-add/<%=orgType%>';
-        })
-    });
-    function findOrgList(){
-        //入驻企业json列表
-        $.get('/org/find-org-list/<%=orgType%>',function(data){
-            console.log(data);
-            var lis=[],li;
-            $.each(data, function(i,v){
-                console.log(v);
-                li = '<li><div class="number"></div>' +
-                        '<div class="content">' +
-                        '<div class="fixdiv round"><img src="/images/orgs/'+ v.id+'.png" title="'+v.name+'" style="width:100%;height:160px;"></div>' +
-                        '<div class="fixdiv"><img src="/images/top.png" class="img"></div>' +
-                        '<div class="fixdiv" style="left: 50%;height:20px;">'+ v.name+'</div>' +
-                        '</div></li>';
-                lis.push(li);
-            })
-            $('#orgs').append(lis);
-        } )
-        //入驻企业总数
-        $.ajax( "/org/totalCount/<%=orgType%>" )
-            .done(function(data) {
-                console.log(data);
-                $('#count').html("<span style='color: #e20001'>"+data.totalCount+"</span>"+" 家企业");
-            });
-        $('#time').text((new Date()).toLocaleDateString().replace(/[^\d]/g,'.'));
-    }
-</script>
+            <div class="item-name">
+              <img ng-src="/img/supportEnterprises/text_bar.png"/>
+              <div class="name-text">{{item.name}}</div>
+            </div>
+          </div>
+      </div>
+       <div class="footer-image row">
+        <img ng-src="/img/supportEnterprises/footer.png"/>
+        <div class="item-join">
+        <a ng-click="joinChange()">
+          <img ng-if="!join" ng-src="/img/supportEnterprises/join_default.png"/>
+          <img ng-if="join" ng-src="/img/supportEnterprises/join_click.png"/>
+        </a>
+      </div>
+      <div class="date">
+        <span>{{date}}</span>
+      </div>
+      <div class="count-tip">
+        <i class="num">{{num}}</i><span>&nbsp;家合作伙伴</span>
+      </div>
+      </div>
+  </body>
 </html>
