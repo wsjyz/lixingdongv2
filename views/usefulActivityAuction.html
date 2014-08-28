@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-cn" ng-app="lxd">
+  <head>
+    <title>公益拍卖-活动中心-竞品拍卖</title>
+	  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="css/main.css"></link>
+
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/angular.min.js"></script>
+  	<script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+        <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  <div class="container text-center col-xs-12" ng-controller="UsefulActivityAuctionCtrl">
+      <div class="la-header  row">
+        <img ng-src="img/usefulActivity/ua_banner.png" />
+        <i class="ua-logo"></i>
+      </div>
+      <div class="ua-title col-xs-10">柠檬杯<br/><span class="ua-title-part">喝水神器<span></div>
+      <div class="ua-content">
+          <div class="la-item-single">
+           <table>
+             <tr>
+               <td class="la-left-bar">
+                  <i class="uaa-heart-blank-shaped"></i>
+                  <i class="uaa-li"></i>
+                  <i class="uaa-xing"></i>
+                  <i class="uaa-dong"></i>
+               </td>
+               <td>
+                 <div class="uaa-auction jumbotron col-xs-11 pull-right">
+                     <form role="form">
+                       <div class="form-group row pull-left col-xs-8">
+                          <label class="col-xs-6 uaa-hei" for="exampleInputEmail1">出价</label>
+                          <input type="text" class="uaa-give-price uaa-hei form-control col-xs-5" id="exampleInputEmail1" name="">
+                          <label class="col-xs-1 uaa-hei">元</label><br/>
+                          <button class="uaa-submit btn row col-xs-8 col-xs-offset-2" ng-class="" ng-click="">确认出价</button>
+                        </div>
+                     </form>
+                     <div class="uaa-text pull-right">
+                        <span>已有100人出价</span><br/>
+                        <span>最低价 20.00</span>
+                     </div>
+                  </div>
+               </td>
+             </tr>
+           </table>
+          </div>
+      </div>
+  </div>
+  </body>
+</html>

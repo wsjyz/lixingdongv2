@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-cn" ng-app="lxd">
+  <head>
+    <title>公益活动</title>
+	  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="css/main.css"></link>
+
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/angular.min.js"></script>
+  	<script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+        <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  <div class="container text-center col-xs-12" ng-controller="UsefulActivityCtrl">
+      <div class="la-header  row">
+        <img ng-src="img/usefulActivity/ua_banner.png" />
+        <i class="ua-logo"></i>
+      </div>
+      <div class="ua-title col-xs-10">公益<br/><span class="ua-title-part">是一种态度<span></div>
+      <div class="ua-content">
+          <div class="la-item-single" ng-repeat="item in items">
+           <table>
+             <tr>
+               <td class="la-left-bar">
+                  <i class="la-heart-blank-shaped" ng-if="$index==0"></i>
+                  <i class="la_date">{{item.dataDate}}</i>
+               </td>
+               <td>
+                 <div class="la-item-img jumbotron col-xs-11 pull-right">
+                      <div class="la-item-info col-xs-9 text-left">
+                          <h4>{{item.dataName}}</h4>
+                          <span class="intro">{{item.dataIntro}}</span>
+                          <div class="la-item-join">
+                            <i class="la_heart_shaped"></i>
+                            <div class="join-count">已有<span class="count-num">{{item.dataCount}}</span>人参与</div>
+                          </div>
+                      </div>
+                      <div class="item-pic thumbnail col-xs-3 pull-right">
+                        <img ng-src="{{item.dataImage}}" class="img-rounded">
+                      </div>
+                  </div>
+               </td>
+             </tr>
+           </table>
+          </div>
+      </div>
+  </div>
+  </body>
+</html>

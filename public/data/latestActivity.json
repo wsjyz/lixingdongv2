@@ -1,0 +1,34 @@
+[
+{
+	"dataId":1,
+	"dataName":"资助贫困儿童1",
+	"dataDate":"8.24",
+	"dataImage":"data/img/140211_930.jpg",
+	"dataIntro":"资助贫困儿童资助贫困儿童资助贫困儿童资助贫困儿童",
+	"dataCount":10
+
+},{
+	"dataId":2,
+	"dataName":"资助贫困儿童2",
+	"dataDate":"8.24",
+	"dataImage":"data/img/3245295_102138015499_2.jpg",
+	"dataIntro":"资助贫困儿童资助贫困儿童资助贫困儿童资助贫困儿童",
+	"dataCount":110
+
+},{
+	"dataId":3,
+	"dataName":"资助贫困儿童3",
+	"dataDate":"8.24",
+	"dataImage":"data/img/m_14_634745764729218750_40298701.jpg",
+	"dataIntro":"资助贫困儿童资助贫困儿童资助贫困儿童资助贫困儿童",
+	"dataCount":120
+},
+{
+	"dataId":4, 
+	"dataName":"资助贫困儿童4",
+	"dataDate":"8.24",
+	"dataImage":"data/img/u=2477397219,9802033&fm=23&gp=0.jpg",
+	"dataIntro":"资助贫困儿童资助贫困儿童资助贫困儿童资助贫困儿童",
+	"dataCount":119
+}
+]

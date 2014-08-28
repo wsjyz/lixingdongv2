@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cn" ng-app="lxd">
+  <head>
+    <title>赞助企业-入驻</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="css/main.css"></link>
+
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/angular.min.js"></script>
+  	<script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+        <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="container text-center col-xs-12" ng-controller="SupportEnterprisesJoinCtrl">
+      <div class="sej_header row">
+        <img ng-src="img/supportEnterprisesJoin/banner.png" />
+      </div>
+      <form role="form">
+        <div class="sej_content col-xs-12">
+          <div class="form-group row">
+            <label class="pull-left col-xs-3" for="name">单位</label>
+            <input type="text" class="form-control col-xs-5" id="name" name="item.name">
+          </div>
+          <div class="form-group row">
+            <label class="pull-left col-xs-3" for="tel">电话</label>
+            <input type="password" class="form-control col-xs-5" id="tel" name="item.tel">
+          </div>
+          <div class="form-group row">
+            <label class="pull-left col-xs-3" for="address">地址</label>
+            <input type="text" class="form-control col-xs-5" id="address" name="item.address">
+          </div>
+          <div class="form-group row">
+            <label class="pull-left col-xs-3" for="description">简介</label>
+            <textarea class="form-control col-xs-5"  cols="3" rows="4" id="description" name="item.description"></textarea>
+          </div>
+        </div> 
+        <button class="sej-submit btn col-xs-12" ng-class="{sejSubmitClick:submitClick}" ng-click="saveAndChangeBtn(item)">提交</button>
+       </form>
+    </div>
+  </body>
+</html>

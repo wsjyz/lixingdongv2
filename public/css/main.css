@@ -1,0 +1,501 @@
+/**
+ * 2014-08-22
+ * @zhang zijuan
+ */
+
+html{height:100%;}
+body{height:100%;width: 100%;background-color: #d3d3d3;}
+img{display: block;width: 100%;height: 100%;}
+a{cursor: pointer;}
+.container{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+/** 赞助企业*/
+.container .header-image{
+  left: 21px;
+  right:21px;
+  top: 13px;
+  position: absolute;
+  height: 100px;
+  display: inline-block;
+}
+
+.container .footer-image{
+  width: 100%;
+  bottom: 0px;
+  position: absolute;
+}
+
+.container .item-join{
+  width: 20%; 
+  height: auto;
+  position: absolute;
+  margin-top: -17%;
+  margin-left: 40%;
+}
+
+.container .date{
+  width: 37%; 
+  height: auto;
+  position: absolute;
+  margin-top: -25px;
+  margin-left: 8%;
+  font-size: 16px;
+  color: #ffffff;
+}
+.container .count-tip{
+  width: 37%; 
+  height: auto;
+  position: relative;
+  margin-top:-25px;
+  margin-left: 57%;
+  font-size: 16px;
+  color: #ffffff;
+}
+.container .count-tip .num{color: #e20001}
+.container .content {
+    left: 6px;
+    right: 6px;
+    top: 118px;
+    bottom: 5px;
+    position: absolute;;
+    margin-top: 10px;
+    overflow-x:hidden;
+    overflow-y:auto; 
+    display: inline-block; 
+}
+
+.container .content .item-single{
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
+.container .content .item-single .order-star{
+    margin-left: 17px;
+    width: 5%;
+}
+
+ .container .content .item-single .item-img{
+    margin-left: 10%;
+    margin-top: -22px;
+    width: 85%;
+    height: 135px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+}
+.container .content .item-single .item-name{
+   width: 85%;
+   margin-left: 10%;
+   margin-top: -32px;
+   height: 32px;
+}
+
+.container .content .item-single .name-text{
+  margin-top: -24px;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/** 赞助企业入驻*/
+
+.container .sej_header{
+  left: 21px;
+  right:21px;
+  top: 13px;
+  position: absolute;
+  height: 175px;
+  display: inline-block;
+}
+
+.container .sej_content{
+	background-color: #ffffff;
+	height: auto;
+	margin: 200px 0 0px 0;
+    border-radius: 4px;
+/*    width: 95%;*/
+
+}
+
+.container .sej_content .form-control{
+	width: 73%;
+	margin-top: -2px;
+	margin-left: -11px;
+
+}
+.container .sej_content .form-group {
+	margin-top: 15px;
+}
+
+.container .sej-submit{
+	background: url("../img/supportEnterprisesJoin/submit_default.png") top;
+	height: 42px;
+	color: #ffffff;
+	border-radius: 0 0 4px 4px;
+	margin-top: -3px;
+	font-weight: bold;
+
+}
+
+.container .sejSubmitClick{
+	background: url("../img/supportEnterprisesJoin/submit_click.png") top;
+
+}
+
+/** 秘书处*/
+.container .st-header{
+  left: 21px;
+  right:21px;
+  top: 13px;
+  position: absolute;
+  height: 175px;
+  display: inline-block;
+}
+
+.container .st-content{
+	left: 6px;
+    right: 6px;
+    top: 190px;
+    bottom: 5px;
+    position: absolute;;
+    margin-top: 10px;
+    overflow-x:hidden;
+    overflow-y:auto; 
+    display: inline-block; 
+}
+
+.container .st-item-img{
+    padding-left: 2px;
+    padding-right: 2px;
+}
+.container .st-item-img a{
+    margin-bottom: 2px;
+}
+
+.container .st-item-img .st-item-name{
+	height: 28px;
+    margin-left: 2.5%;
+    margin-top: -34px;
+    width: 95%;
+}
+
+.container .st-item-img .st-name-text{
+  margin-top: -24px;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.container .st-item-img .st-item-tip{
+    margin-left: 83.5%;
+    margin-top: -58%;
+    width: 13%;
+}
+
+.container .st-item-img .st-item-tip .new{
+  margin-top: -58%;
+}
+
+.container .st-item-img .st-item-tip .hot{
+  margin-left: -103%;
+    margin-top: -100%;
+}
+
+/** 关于我们 详情*/
+
+.container .ao-title{
+	left: 6px;
+    right: 6px;
+    top: 190px;
+    bottom: 5px;
+    position: absolute;;
+    margin-top: 10px;
+    overflow-x:hidden;
+    overflow-y:auto; 
+    display: inline-block; 
+}
+
+.container .ao-title .about-us{
+	font-size:20px;
+}
+
+.container .ao-title .english{
+	font-style: italic;
+	text-transform:capitalize;
+	font-size:13px;
+	margin-top: 8px;
+}
+
+.container .ao-title .english i{
+	color:#FF7744;
+}
+
+.container .ao-title .line{
+	border-bottom:1px solid #888888
+;
+	height: 21px;
+	margin-left:-23px;
+}
+
+.container .ao-content{
+	left: 15px;
+    right: 15px;
+    top: 230px;
+    bottom: 5px;
+    position: absolute;;
+    margin-top: 10px;
+    overflow-x:hidden;
+    overflow-y:auto; 
+    display: inline-block; 
+}
+
+.container .ao-content p{
+	text-indent: 2em;
+}
+
+.container .ao-content .about-us{
+	text-indent: 2em;
+}
+
+/** 最新活动*/
+.container .la-header{
+  left: 21px;
+  right:21px;
+  top: 13px;
+  position: absolute;
+  height: 175px;
+  display: inline-block;
+}
+
+.container .la-content{
+	left: 7px;
+    right: 7px;
+    top: 200px;
+    bottom: 5px;
+    position: absolute;
+    margin-top: 4px;
+    overflow-x:hidden;
+    overflow-y:auto; 
+    display: inline-block; 
+}
+
+.container .la-content .la-left-bar ,.container .ua-content .la-left-bar{
+	width:1%;
+	border-right:2px solid #b5b5b5;
+}
+
+.container .la-content .la-heart-blank-shaped,.container .ua-content .la-heart-blank-shaped{
+	background: url("../img/latestActivity/la_heart_blank_shaped.png") no-repeat top;
+	display: block;
+    height: 20px;
+    margin-left: 50%;
+    width: 100%;
+}
+
+.container .la-content .la_date,.container .ua-content .la_date{
+	display: block;
+    height: 20px;
+    margin-left: 50%;
+    width: 100%;
+    background-color:#FF7744; 
+    color: #ffffff;
+    font-size: 10px;
+    padding-top: 3px;
+}
+
+.container .la-content .la-item-img,.container .ua-content .la-item-img{
+	margin-right: 6px;
+    width: 94%;
+    padding: 5px;
+    margin-bottom: 8px;
+    background-color: #ffffff;
+    cursor: pointer;
+}
+
+.container .la-content .la-item-img:hover,.container .ua-content .la-item-img:hover{
+	background-color: #A9A9A9;
+}
+
+.container .la-content .la-item-img .la-item-info,.container .ua-content .la-item-img .la-item-info{
+	width: 65%;
+	margin-left: -9px;
+	padding-right: 0;
+}
+
+.container .la-content .la-item-img .la-item-info h4,.container .ua-content .la-item-img .la-item-info h4{
+	margin-top: 0px;
+}
+
+.container .la-content .la-item-img .la-item-info .intro,.container .ua-content .la-item-img .la-item-info .intro{
+	font-size: 14px;
+	color: #757575;
+	line-height: 1.5;
+	display: inline-block;
+	margin-top: -5px;
+}
+
+.container .la-content .la-item-img .item-pic,.container .ua-content .la-item-img .item-pic{
+	margin-bottom: 0px;
+	width: 35%;
+	margin-right: 4px;
+	padding: 0;
+}
+
+.container .la-content .la-item-img .item-pic .img-rounded,.container .ua-content .la-item-img .item-pic .img-rounded,{
+	border-radius:3px; 
+}
+
+
+.container .la-content .la-item-img .la-item-join,.container .ua-content .la-item-img .la-item-join{
+	font-size: 16px;
+}
+
+.container .la-content .la-item-img .la-item-join .join-count,.container .ua-content .la-item-img .la-item-join .join-count{
+	margin-top: -32px;
+	margin-left:20px
+}
+
+.container .la-content .la-item-join .join-count .count-num,.container .ua-content .la-item-join .join-count .count-num{
+	color: #ff7744;
+}
+
+.container .la-content .la_heart_shaped ,.container .ua-content .la_heart_shaped {
+	background: url("../img/latestActivity/la_heart_shaped.png") no-repeat top;
+	display: block;
+    height: 20px;
+    width: 20px;
+}
+
+
+/** 关于我们 详情*/
+
+.container .ua-logo{
+	background: url("../img/usefulActivity/ua_logo.png") no-repeat top;
+	display: block;
+    height: 90px;
+    width: 90px;
+    margin-left: 9%;
+    margin-top: -35px;
+    position: absolute;
+}
+
+.container .ua-title{
+    top: 202px;
+    left: 7px;
+    right: 7px;
+    position: absolute;
+    font-weight: bold;
+}
+
+.container .ua-title .ua-title-part{
+    margin-left: 103px;
+}
+
+.container .ua-content{
+	left: 7px;
+    right: 7px;
+    top: 250px;
+    bottom: 5px;
+    position: absolute;
+    margin-top: 4px;
+    overflow-x:hidden;
+    overflow-y:auto; 
+    display: inline-block; 
+}
+
+
+/** 最新活动详情*/
+
+.container .lad-content{
+	margin-top: 20px;
+}
+
+.container .lad-content h3{
+	font-weight: bold;
+}
+
+.container .lad-content .info-other{
+	font-size: 18px;
+}
+
+.container .lad-content .content-text{
+    margin-top: 10px;
+}
+
+/** 公益拍卖-活动中心-竞品拍卖*/
+.container .uaa-heart-blank-shaped{
+    background: url("../img/usefulActivityAuction/uaa_star.png") no-repeat top;
+    display: block;
+    height: 85px;
+    margin-left: 50%;
+    width: 30px;
+}
+
+.container .uaa-li{
+    background: url("../img/usefulActivityAuction/uaa_li.png") no-repeat top;
+    display: block;
+    height: 30px;
+    margin-left: 50%;
+    width: 30px;
+    margin-top: -141%;
+}
+
+.container .uaa-xing{
+    background: url("../img/usefulActivityAuction/uaa_xing.png") no-repeat top;
+    display: block;
+    height: 30px;
+    margin-left: 50%;
+    width: 30px;
+    margin-top: 30%;
+}
+
+.container .uaa-dong{
+    background: url("../img/usefulActivityAuction/uaa_dong.png") no-repeat top;
+    display: block;
+    height: 30px;
+    margin-left: 50%;
+    width: 30px;
+    margin-top: 34%;
+}
+
+.container .uaa-auction{
+   padding: 4px;
+   font-size: 16px;
+}
+
+.container .uaa-auction .uaa-hei{
+   margin-top: 20px;
+}
+
+
+.container .uaa-auction .form-group{
+   border-right: 1px solid red;
+
+}
+
+.container .uaa-auction .form-group .col-xs-6{
+   margin-left: -17px;
+
+}
+
+
+
+.container .uaa-give-price{
+    margin-top: 5px;
+    width: 51%;
+    margin-left: -16px;
+}
+
+.container .uaa-auction .uaa-submit{
+  background: url("../img/usefulActivityAuction/price_default.png") no-repeat top;
+  height: 42px;
+  color: #ffffff;
+  margin-top: 16px;
+  font-weight: bold;
+
+}
+
+
+.container .uaa-auction .uaa-text{
+   width: 41%;
+}
