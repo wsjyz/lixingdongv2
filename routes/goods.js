@@ -27,16 +27,25 @@ router.post('/add',function(req, res,next) {
     form.parse(req,function(err, fields, files){
         if(err) return next(err);
 
-        var goodsModel = new DataModel(fields);
+        var goodsModel = {};
+        goodsModel.goodsName = fields.goodsName[0];
+        goodsModel.followerCounts = fields.followerCounts[0];
+        goodsModel.area = fields.area[0];
+        goodsModel.mode = fields.mode[0];
+        goodsModel.reservePrice = fields.reservePrice[0];
+        goodsModel.marketPrice = fields.marketPrice[0];
+        goodsModel.finishTime = fields.finishTime[0];
+        goodsModel.description = fields.description[0];
         goodsModel.showOrder = 0;
         goodsModel.followUser = 0;
         goodsModel.createTime = new Date().getTime();
         goodsModel.type = "goods";
-        goodsModel.save(function(err,goods){
+        var model = new DataModel(goodsModel);
+        model.save(function(err,goods){
 
             if(err) return next(err);
 
-            fs.rename(files.goodsUrlFile[0].path, './public/images/goods/'+goods.id+'.jpg', function(err) {
+            fs.rename(files.goodsUrlFile[0].path, './public/upload/goods/'+goods.id+'.jpg', function(err) {
                 if (err) throw err;
                 // 删除临时文件夹文件,
                 fs.unlink(files.goodsUrlFile[0].path, function() {

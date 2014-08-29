@@ -104,11 +104,24 @@ app.controller('UsefulActivityCtrl',['$scope', '$http', '$location', function ($
 //        .done(function(data) {
 //            console.log(data);
 //        });
-
+    function fmDate(timeStr){
+        var finishTime = new Date(Date.parse(timeStr));
+        return (finishTime.getMonth() + 1)+"."+finishTime.getDate();
+    }
+    $scope.toView = function(id){
+        console.log(id);
+    }
 	//加载数据
  	$http.get( "/goods/find-goods-list/goods").success(function(data){
- 		$scope.items = data;
-
+        var i;
+        var list = [];
+        var item;
+        for(i in data){
+            item = data[i];
+            item.finishTime = fmDate(data[i].finishTime);
+            list.push(item);
+        }
+ 		$scope.items = list;
  	})	
 }]);
 
