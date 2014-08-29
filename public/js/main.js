@@ -63,15 +63,18 @@ app.controller('SupportEnterprisesJoinCtrl',['$scope', '$http', '$location', fun
 app.controller('SecretariatCtrl',['$scope', '$http', '$location', function ($scope, $http, $location) {
 		
 	//加载数据
- 	$http.get("/org/find-org-list/<%=orgType%>").success(function(data){
+ 	$http.get("/org/find-org-list/secretariat").success(function(data){
  		$scope.items = data;	
  	});
 
     //加载数据
-    $http.get("/org/totalCount/<%=orgType%>").success(function(data){
+    $http.get("/org/totalCount/secretariat").success(function(data){
         $scope.province = 34;
         $scope.person = 297;
     })
+    $scope.joinChange = function(){
+        window.location.href = '/org/to-add/secretariat';
+    };
 
 }]);
 
