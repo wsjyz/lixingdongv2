@@ -38,21 +38,20 @@ app.controller('SupportEnterprisesCtrl',['$scope', '$http', function ($scope, $h
 
 //赞助企业入驻(秘书处入驻)
 app.controller('SupportEnterprisesJoinCtrl',['$scope', '$http', '$location', function ($scope, $http, $location) {
-
 		//保存数据
-		$scope.saveAndChangeBtn = function(item){
+		$scope.saveAndChangeBtn = function(item,type){
 			$scope.submitClick = true;
             var data = angular.copy(item);
+
             var org={};
             org.name=data.name;
             org.tel=data.tel;
-            org.type=data.type;
+            org.type=type;
             org.address=data.address;
             org.description=data.description;
-            //var orgJsonStr = $.toJSON(org);
             $.post('/org/add',{org:org}, function(data){
                 if(data) {
-                    alert('公司入驻成功')
+                    alert('添加成功')
                 }
             })
 		}
