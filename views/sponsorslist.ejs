@@ -26,15 +26,23 @@
         <img ng-src="/img/supportEnterprises/header.png" />
       </div>
       <div class="content">
-          <div class="item-single row" ng-repeat="item in items">
-            <div class="order-star"><img ng-src="/img/supportEnterprises/star.png"></div>
-            <div class="item-img">
-              <img ng-src="/images/orgs/{{item.id}}.png"  title="{{item.name}}" class="img-rounded" />
-            </div>
-            <div class="item-name">
-              <img ng-src="/img/supportEnterprises/text_bar.png"/>
-              <div class="name-text">{{item.name}}</div>
-            </div>
+          <div class="item-single" ng-repeat="item in items">
+              <table>
+                  <tr>
+                      <td class="la-left-bar">
+                          <div class="order-star"><img ng-src="/img/supportEnterprises/star.png"></div>
+                      </td>
+                      <td class="item-cont">
+                          <div class="item-img">
+                              <img ng-src="/images/orgs/{{item.id}}.png"  title="{{item.name}}" class="img-rounded" />
+                          </div>
+                          <div class="item-name">
+                              <img ng-src="/img/supportEnterprises/text_bar.png"/>
+                              <div class="name-text">{{item.name}}</div>
+                          </div>
+                      </td>
+                  </tr>
+              </table>
           </div>
       </div>
        <div class="footer-image row">

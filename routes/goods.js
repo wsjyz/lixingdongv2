@@ -83,8 +83,10 @@ router.get('/totalCount/:type',function(req, res,next){
     })
 });
 
-router.get('/to-view', function(req, res) {
-    res.render('viewgoods', { title: '公益拍卖' });
+router.get('/to-view/:id', function(req, res) {
+    var id = req.param('id');
+    console.log(id)
+    res.render('viewgoods', { title: '公益拍卖',id: id });
 });
 
 router.get('/find-goods-by-id/:id',function(req, res,next){
