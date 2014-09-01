@@ -10,6 +10,7 @@
 
     <script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
     <script src="/js/angular.min.js"></script>
+    <script src="/js/angular-route.js"></script>
   	<script src="/js/bootstrap.min.js"></script>
     <script src="/js/main.js"></script>
 
@@ -29,7 +30,7 @@
       </div>
       <div class="ua-title col-xs-10">公益<br/><span class="ua-title-part">是一种态度</span></div>
       <div class="ua-content">
-          <div class="la-item-single" ng-repeat="item in items" >
+          <div class="la-item-single" ng-repeat="item in items" ng-click="toView(item.id)">
            <table>
              <tr>
                <td class="la-left-bar">
@@ -37,13 +38,16 @@
                   <i class="la_date">{{item.finishTime}}</i>
                </td>
                <td>
-                 <div class="la-item-img jumbotron col-xs-11 pull-right" ng-click="toView('{{item.id}}')" >
+                 <div class="la-item-img jumbotron col-xs-11 pull-right" >
                       <div class="la-item-info col-xs-9 text-left">
                           <h4>{{item.goodsName}}</h4>
-                          <span class="intro" ng-bind-html-unsafe="item.description"></span>
+                          <span class="intro">{{item.description}}</span>
                           <div class="la-item-join">
                             <i class="la_heart_shaped"></i>
-                            <div class="join-count">已有<span class="count-num">{{item.followerCounts}}</span>人参与</div>
+                            <div class="join-count">已有<span class="count-num">
+                                    <span ng-if="item.followerCounts != null && item.followerCounts != 'undefined'">{{item.followerCounts}}</span>
+                                    <span ng-if="item.followerCounts == null || item.followerCounts == 'undefined' || item.followerCounts == ''">0</span>
+                            </span>人参与</div>
                           </div>
                       </div>
                       <div class="item-pic thumbnail col-xs-3 pull-right">

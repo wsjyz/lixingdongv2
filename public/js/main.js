@@ -5,13 +5,11 @@
  */
 "use strict";
 
-var app = angular.module('lxd', []);
+var app = angular.module('lxd', ['ngRoute']);
 
 
 //赞助企业
-app.controller('SupportEnterprisesCtrl',['$scope', '$http', function ($scope, $http) {
-
-//    var type = $remote.
+app.controller('SupportEnterprisesCtrl',['$scope', '$http','$window', function ($scope, $http,$window) {
 
  	$scope.join = false;
  	$scope.date = (new Date()).toLocaleDateString().replace(/[^\d]/g,'.');
@@ -31,7 +29,9 @@ app.controller('SupportEnterprisesCtrl',['$scope', '$http', function ($scope, $h
  			$scope.join = false;
  		}else{
  			$scope.join = true;
- 		}	
+            $window.location.href = '/org/to-add/sponsors';
+ 		}
+
     };
     		
  }]);
@@ -42,7 +42,6 @@ app.controller('SupportEnterprisesJoinCtrl',['$scope', '$http', '$location', fun
 		$scope.saveAndChangeBtn = function(item,type){
 			$scope.submitClick = true;
             var data = angular.copy(item);
-
             var org={};
             org.name=data.name;
             org.tel=data.tel;
@@ -59,11 +58,11 @@ app.controller('SupportEnterprisesJoinCtrl',['$scope', '$http', '$location', fun
 }]);
 
 //秘书处
-app.controller('SecretariatCtrl',['$scope', '$http', '$location', function ($scope, $http, $location) {
-		
+app.controller('SecretariatCtrl',['$scope', '$http', '$window', function ($scope, $http, $window) {
+
 	//加载数据
  	$http.get("/org/find-org-list/secretariat").success(function(data){
- 		$scope.items = data;	
+ 		$scope.items = data;
  	});
 
     //加载数据
@@ -72,7 +71,13 @@ app.controller('SecretariatCtrl',['$scope', '$http', '$location', function ($sco
         $scope.person = 297;
     })
     $scope.joinChange = function(){
-        window.location.href = '/org/to-add/secretariat';
+        if($scope.join){
+            $scope.join = false;
+        }else{
+            $scope.join = true;
+            $window.location.href = '/org/to-add/secretariat';
+        }
+
     };
 
 }]);
@@ -92,12 +97,12 @@ app.controller('LatestActivityCtrl',['$scope', '$http', '$location', function ($
  	$http.get('data/latestActivity.json').success(function(data){
  		$scope.items = data;
 
- 	})	
+ 	})
 }]);
 
 
 //公益活动
-app.controller('UsefulActivityCtrl',['$scope', '$http', '$location', function ($scope, $http, $location) {
+app.controller('UsefulActivityCtrl',['$scope', '$http', '$window', function ($scope, $http, $window) {
 
 //    //竞拍品总数
 //    $.ajax( "/org/totalCount/goods" )
@@ -108,8 +113,9 @@ app.controller('UsefulActivityCtrl',['$scope', '$http', '$location', function ($
         var finishTime = new Date(Date.parse(timeStr));
         return (finishTime.getMonth() + 1)+"."+finishTime.getDate();
     }
+    //查看详情
     $scope.toView = function(id){
-        console.log(id);
+        $window.location.href="/goods/to-view/"+id;
     }
 	//加载数据
  	$http.get( "/goods/find-goods-list/goods").success(function(data){
@@ -122,7 +128,7 @@ app.controller('UsefulActivityCtrl',['$scope', '$http', '$location', function ($
             list.push(item);
         }
  		$scope.items = list;
- 	})	
+ 	})
 }]);
 
 //最新活动-详情
@@ -131,14 +137,9 @@ app.controller('LatestActivityDetailCtrl',['$scope', '$http', '$location', funct
 	//加载数据
  	$http.get('data/latestActivityDetail.json').success(function(data){
  		$scope.item = data;
- 	})	
+ 	})
 }]);
 
-
-//公益活动详情-详情
-app.controller('UsefulActivityAuctionCtrl',['$scope', '$http', '$location', function ($scope, $http, $location) {
-
-}]);
 
 //拍卖纪录
 app.controller('AuctionRecordCtrl',['$scope', '$http', '$location', function ($scope, $http, $location) {

@@ -1,51 +1,93 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script src="/javascripts/jquery-2.0.0.min.js"></script>
-    <script type="text/javascript">
-        $(function(){
+<html lang="zh-cn" ng-app="lxd">
+  <head>
+    <title>公益拍卖-活动中心-竞品拍卖</title>
+	  <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="/css/main.css"></link>
 
+    <script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
+    <script src="/js/angular.min.js"></script>
+    <script src="/js/angular-route.js"></script>
+  	<script src="/js/bootstrap.min.js"></script>
+    <script src="/js/main.js"></script>
 
-        });
-        //获取拍卖品信息，url后面的是具体的id
-        function viewGoods(){
-            $.ajax( "/goods/find-goods-by-id/7dca57002c1711e4994945bcd6eb2610" )
-                    .done(function(data) {
-                        console.log(data);
-                    });
-
-        }
-        function savePrice(){
-            var userPrice = {};
-            userPrice.mobile = $('#mobile').val();
-            userPrice.price = $('#price').val();
-            userPrice.goodsId = $('#goodsId').val();
-            $.post('/users/add-price',{userPrice:userPrice}, function(data){
-                if(data) {
-                    alert(data.optTip);
-                }
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
+        <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+     <script>
+           var request = window.location.href;
+           var params  = request.split("/");
+         //公益活动详情-详情
+         app.controller('UsefulActivityAuctionCtrl',['$scope', '$http', '$location', function ($scope, $http, $location) {
+             var id = params[params.length-1];
+             //加载数据
+            $http.get("/goods/find-goods-by-id/"+id).success(function(data){
+               $scope.item = data.goods;
             })
-        }
-        //获得最高价格
-        function findHighestPrice(){
-            var goodsId = $('#goodsId').val();
-            $.ajax({ url:"/goods/find-highest-price",data:{id:goodsId} })
-                    .done(function(data) {
-                        var msg = data.highestPrice;
-                        console.log(msg[0]+"-"+msg[1]);
-                    });
-        }
-    </script>
-</head>
-<body>
-<h1><%= title %></h1>
-<input type="button" value="获取竞拍品信息" onclick="javascript:viewGoods();"/></br></br>
-<input type="text" id="mobile" placeholder="请填入手机号" />
-<input type="text" id="price" placeholder="请填入价格"/>
-<input type="hidden" id="goodsId" value="7dca57002c1711e4994945bcd6eb2610"/>
-<input type="button" value="竞拍" onclick="javascript:savePrice();"/>
-<input type="button" value="最高价" onclick="javascript:findHighestPrice();"/>
-</body>
+         }]);
+     </script>
+  </head>
+  <body>
+  <div class="container text-center col-xs-12" ng-controller="UsefulActivityAuctionCtrl">
+
+      <div class="la-header  row">
+        <img ng-src="/img/usefulActivity/ua_banner.png" />
+        <i class="ua-logo"></i>
+      </div>
+      <div class="ua-title col-xs-10">{{item.goodsName}}<br/><span class="ua-title-part">{{item.goodsSimpleName}}</span></div>
+      <div class="uaa-content row">
+          <div class="la-item-single">
+           <div class="uaa-heart-blank-shaped"></div>
+           <table>
+             <tr>
+               <td class="la-left-bar">
+                  <i class="uaa-li"></i>
+                  <i class="uaa-xing"></i>
+                  <i class="uaa-dong"></i>
+               </td>
+               <td class="uaa-cont-bottom">
+                 <div class="uaa-auction jumbotron col-xs-11 pull-right">
+                     <form role="form">
+                       <div class="form-group row pull-left col-xs-8">
+                          <label class="col-xs-6 uaa-hei" for="exampleInputEmail1">出价</label>
+                          <input type="text" class="uaa-give-price uaa-hei form-control col-xs-5" id="exampleInputEmail1" name="">
+                          <label class="col-xs-1 uaa-hei">元</label><br/>
+                          <button class="uaa-submit btn row col-xs-8 col-xs-offset-2" ng-class="" ng-click="">确认出价</button>
+                          <!-- <button class="uaa-submit btn row col-xs-8 col-xs-offset-2" ng-class="" ng-click="">竞拍已结束</button> -->
+                        </div>
+                     </form>
+                     <div class="uaa-text pull-right">
+                        <span>已有{{item.followUser}}人出价</span><br/>
+                        <span>最低价 {{item.lowestPrice}}</span>
+                     </div>
+                  </div>
+               </td>
+             </tr>
+           </table>
+          </div>
+          <div class="uaa-good-detail">
+             <i class="uaa-detail"></i>
+             <h4>竞拍品详情</h4>
+             <div class="uaa-detail-cont">
+                <p>{{item.description}}</p>
+             </div>
+          </div>
+          <div class="uaa-des">
+             <i class="uaa-des-img"></i>
+             <h4>为了公益 我们用公益来做什么？</h4>
+             <div class="uaa-des-cont">
+               <p>2012年12月，王健林与马云在某电视台晚会上打赌。王健林声称：“电商再厉害，但像洗澡、捏脚、掏耳朵这些业务，电商是取代不了的。我跟马云先生赌一把：2020年，也就是10年后，如果电商在中国零售市场占50%，我给他一个亿，如果没到他还我一个亿。
+
+王健林似乎已认识到十年后电商将超线下，但未来在线上电商领域，王健林希望可与马云一拼。</p>
+             </div>
+          </div>
+      </div>
+  </div>
+  </body>
 </html>
