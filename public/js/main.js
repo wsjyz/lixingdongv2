@@ -135,7 +135,12 @@ app.controller('LatestActivityDetailCtrl',['$scope', '$http', '$location', funct
 }]);
 
 
-//最新活动-详情
+//公益活动详情-详情
 app.controller('UsefulActivityAuctionCtrl',['$scope', '$http', '$location', function ($scope, $http, $location) {
+
+}]);
+
+//拍卖纪录
+app.controller('AuctionRecordCtrl',['$scope', '$http', '$location', function ($scope, $http, $location) {
 
 }]);

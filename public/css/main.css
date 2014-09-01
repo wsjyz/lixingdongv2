@@ -68,26 +68,37 @@ a{cursor: pointer;}
 }
 
 .container .content .item-single{
-    margin-bottom: 12px;
+    /*margin-bottom: 12px;*/
     cursor: pointer;
 }
 
+.container .content .item-single .item-cont{
+    padding: 5px;
+}
+
+.item-single .la-left-bar{
+  width:1%;
+  border-right:2px solid #b5b5b5;
+}
+
 .container .content .item-single .order-star{
-    margin-left: 17px;
-    width: 5%;
+    margin-left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -73px;
 }
 
  .container .content .item-single .item-img{
-    margin-left: 10%;
-    margin-top: -22px;
-    width: 85%;
+    margin-left: 6%;
+    /*margin-top: -22px;*/
+    width: 93 %;
     height: 135px;
     border: 1px solid #fff;
     border-radius: 5px;
 }
 .container .content .item-single .item-name{
-   width: 85%;
-   margin-left: 10%;
+   width: 93%;
+   margin-left: 6%;
    margin-top: -32px;
    height: 32px;
 }
@@ -154,7 +165,7 @@ a{cursor: pointer;}
 }
 
 .container .st-content{
-	left: 6px;
+	 left: 6px;
     right: 6px;
     top: 190px;
     bottom: 5px;
@@ -165,9 +176,14 @@ a{cursor: pointer;}
     display: inline-block; 
 }
 
+.container .st-content .st-item-single{
+   margin: 5px ;
+}
+
 .container .st-item-img{
     padding-left: 2px;
     padding-right: 2px;
+    margin-bottom: 12px;
 }
 .container .st-item-img a{
     margin-bottom: 2px;
@@ -187,8 +203,8 @@ a{cursor: pointer;}
 }
 
 .container .st-item-img .st-item-tip{
-    margin-left: 83.5%;
-    margin-top: -58%;
+    margin-left: 84%;
+    margin-top: -53.5%;
     width: 13%;
 }
 
@@ -279,17 +295,19 @@ a{cursor: pointer;}
     display: inline-block; 
 }
 
-.container .la-content .la-left-bar ,.container .ua-content .la-left-bar{
+.container .la-content .la-left-bar ,.container .ua-content .la-left-bar,.container .uaa-content .la-left-bar{
 	width:1%;
 	border-right:2px solid #b5b5b5;
 }
 
 .container .la-content .la-heart-blank-shaped,.container .ua-content .la-heart-blank-shaped{
-	background: url("../img/latestActivity/la_heart_blank_shaped.png") no-repeat top;
-	display: block;
+	  background: url("../img/latestActivity/la_heart_blank_shaped.png") no-repeat scroll center top rgba(0, 0, 0, 0);
+    display: block;
     height: 20px;
-    margin-left: 50%;
-    width: 100%;
+    margin-left: 14px;
+    position: absolute;
+    top: 0;
+    width: 20px;
 }
 
 .container .la-content .la_date,.container .ua-content .la_date{
@@ -423,53 +441,61 @@ a{cursor: pointer;}
 }
 
 /** 公益拍卖-活动中心-竞品拍卖*/
+.container .uaa-content{
+    margin-top: 256px;
+}
 .container .uaa-heart-blank-shaped{
     background: url("../img/usefulActivityAuction/uaa_star.png") no-repeat top;
     display: block;
-    height: 85px;
-    margin-left: 50%;
-    width: 30px;
+    height: 20px;
+    margin-left: 12px;
+    position: absolute;
+    width: 20px;
 }
 
 .container .uaa-li{
     background: url("../img/usefulActivityAuction/uaa_li.png") no-repeat top;
     display: block;
-    height: 30px;
+    height: 20px;
     margin-left: 50%;
-    width: 30px;
+    width: 20px;
     margin-top: -141%;
 }
 
 .container .uaa-xing{
     background: url("../img/usefulActivityAuction/uaa_xing.png") no-repeat top;
     display: block;
-    height: 30px;
+    height: 20px;
     margin-left: 50%;
-    width: 30px;
+    width: 20px;
     margin-top: 30%;
 }
 
 .container .uaa-dong{
     background: url("../img/usefulActivityAuction/uaa_dong.png") no-repeat top;
     display: block;
-    height: 30px;
+    height: 20px;
     margin-left: 50%;
-    width: 30px;
+    width: 20px;
     margin-top: 34%;
 }
 
 .container .uaa-auction{
    padding: 4px;
    font-size: 16px;
+   margin-right: 6px;
+   width: 94%;
 }
 
 .container .uaa-auction .uaa-hei{
-   margin-top: 20px;
+   /*margin-top: 20px;*/
 }
 
 
 .container .uaa-auction .form-group{
-   border-right: 1px solid red;
+   border-right: 1px solid #888888;
+   width: 64%;
+   margin-top: 12px;
 
 }
 
@@ -481,7 +507,7 @@ a{cursor: pointer;}
 
 
 .container .uaa-give-price{
-    margin-top: 5px;
+    /*margin-top: 5px;*/
     width: 51%;
     margin-left: -16px;
 }
@@ -495,7 +521,126 @@ a{cursor: pointer;}
 
 }
 
+.container .uaa-cont-bottom{
+   /*border-bottom: 1px solid #b5b5b5;*/
+}
 
 .container .uaa-auction .uaa-text{
    width: 41%;
+   margin-top: 7%;
 }
+
+.container .uaa-good-detail{
+   margin-left: 22px;
+   width: 91%;
+   border-left:2px solid #b5b5b5;
+}
+
+.container .uaa-good-detail h4{
+   margin-top: -29px;
+   margin-left: -64%;
+}
+
+.container .uaa-detail{
+    background: url("../img/usefulActivityAuction/uaa_detail.png") no-repeat top;
+    display: block;
+    height: 30px;
+    margin-left: -17px;
+    width: 30px;
+}
+
+.container .uaa-good-detail .uaa-detail-cont{
+    margin-left: 12px;
+    margin-right: 10px;
+    padding-bottom: 18px;
+}
+
+.container .uaa-des{
+   margin-left: 22px;
+   width: 91%;
+   border-left:2px solid #b5b5b5;
+    margin-top: -10px;
+}
+
+.container .uaa-des .uaa-des-img{
+    background: url("../img/usefulActivityAuction/uaa_heart.png") no-repeat top;
+    display: block;
+    height: 30px;
+    margin-left: -17px;
+    width: 30px;
+}
+
+.container .uaa-des h4{
+   margin-top: -29px;
+   margin-left: -12%;
+}
+
+
+
+/** 拍卖纪录*/
+
+.container .ar-header{
+  left: 21px;
+  right:21px;
+  top: 13px;
+  position: absolute;
+  height: 175px;
+  display: inline-block;
+}
+
+.container .ar-title{
+    top: 190px;
+    position: absolute;
+    left: 21px;
+    right:21px;
+   border-bottom: 1px solid #b5b5b5;
+}
+
+.container .ar-content .ar-img{
+    margin-left: -8px;
+}
+
+.container .ar-content{
+    left: 6px;
+    right: -10px;
+    top: 229px;
+    bottom: 5px;
+    position: absolute;;
+    margin-top: 1px;
+    overflow-x:hidden;
+    overflow-y:auto; 
+    display: inline-block;
+}
+
+.container .ar-content .row{
+    border-bottom: 1px solid #b5b5b5;
+    margin-top: 6px;
+    padding-bottom: 6px;
+}
+
+.container .ar-content .ar-info{
+    /*width: 67%;*/
+    margin-left: -23px;
+}
+
+.container .ar-content .ar-info .ar-info-item{
+    margin-top: 4%;
+}
+
+.container .ar-content .ar-info .ar-opt{
+    height: 93px;
+    margin-right: -15px;
+    width: 16%;
+}
+
+.container .ar-content .ar-info .ar-opt .ar-del{
+    background: url("../img/auctionRecord/u115.png") no-repeat scroll center top rgba(0, 0, 0, 0);
+    color: #ffffff;
+    font-size: 17px;
+    padding-top: 50%;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+
