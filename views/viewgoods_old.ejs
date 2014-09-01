@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript">
+        $(function(){
+
+
+        });
+        //获取拍卖品信息，url后面的是具体的id
+        function viewGoods(){
+            $.ajax( "/goods/find-goods-by-id/7dca57002c1711e4994945bcd6eb2610" )
+                    .done(function(data) {
+                        console.log(data);
+                    });
+
+        }
+        function savePrice(){
+            var userPrice = {};
+            userPrice.mobile = $('#mobile').val();
+            userPrice.price = $('#price').val();
+            userPrice.goodsId = $('#goodsId').val();
+            $.post('/users/add-price',{userPrice:userPrice}, function(data){
+                if(data) {
+                    alert(data.optTip);
+                }
+            })
+        }
+        //获得最高价格
+        function findHighestPrice(){
+            var goodsId = $('#goodsId').val();
+            $.ajax({ url:"/goods/find-highest-price",data:{id:goodsId} })
+                    .done(function(data) {
+                        var msg = data.highestPrice;
+                        console.log(msg[0]+"-"+msg[1]);
+                    });
+        }
+    </script>
+</head>
+<body>
+<h1><%= title %></h1>
+<input type="button" value="获取竞拍品信息" onclick="javascript:viewGoods();"/></br></br>
+<input type="text" id="mobile" placeholder="请填入手机号" />
+<input type="text" id="price" placeholder="请填入价格"/>
+<input type="hidden" id="goodsId" value="7dca57002c1711e4994945bcd6eb2610"/>
+<input type="button" value="竞拍" onclick="javascript:savePrice();"/>
+<input type="button" value="最高价" onclick="javascript:findHighestPrice();"/>
+</body>
+</html>

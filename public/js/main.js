@@ -5,8 +5,7 @@
  */
 "use strict";
 
-var app = angular.module('lxd', []);
-
+var app = angular.module('lxd', ['ngSanitize']);
 
 //赞助企业
 app.controller('SupportEnterprisesCtrl',['$scope', '$http', function ($scope, $http) {
@@ -136,8 +135,81 @@ app.controller('LatestActivityDetailCtrl',['$scope', '$http', '$location', funct
 
 
 //公益活动详情-详情
-app.controller('UsefulActivityAuctionCtrl',['$scope', '$http', '$location', function ($scope, $http, $location) {
+app.controller('UsefulActivityAuctionCtrl',['$scope', '$http', '$location','$sce',
+    function ($scope, $http, $location,$sce) {
+    //   /goods/find-goods-by-id/e4e10100318511e4b7e7596f1b256072
+    $http.get( "/goods/find-goods-by-id/7c897e4031d811e4aedfbb3ecb74fc9a").success(function(data){
+        $scope.goodsName = data.goods.goodsName;
+        $scope.goodsSimpleName = data.goods.goodsSimpleName;
+        $scope.followUser  = data.goods.followUser;
+        if(data.goods.lowestPrice){
+            $scope.lowestPrice  = data.goods.lowestPrice;
+        }else{
+            $scope.lowestPrice = 1;
+        }
+        $scope.description  = data.goods.description;
+        $scope.deliberatelyTrustDangerousSnippet = function() {
+            return $sce.trustAsHtml($scope.description);
+        };
+        $scope.btnDisable = false;
+        //拍卖时间
+        $scope.btnVisible = true;
+        if(data.goods.finishTime && data.goods.finishTime != 'undefined'){
+            var finishTimeStr = (data.goods.finishTime+'').replace(/-/g,"/");
+            var finishTime = new Date(Date.parse(finishTimeStr));
 
+            if(finishTime < new Date()){
+                $scope.btnVisible = false;
+                console.log($scope.btnVisible);
+            }
+        }
+        //点击按钮
+        var timeId;
+        var currentGoodId;
+        var currentMobile;
+        $scope.addPrice = function(goodsId){
+            if(typeof ($scope.price) == 'undefined') {
+                return false;
+            }
+
+            bootbox.prompt("请输入手机号", function(result) {
+                //给全局变量赋值，定时器要用，setInterval不接受参数
+                currentGoodId = goodsId;
+                currentMobile = result;
+                if (result === null || result == '') {
+                    Example.show('手机号不能为空');
+                } else {
+                    var userPrice = {};
+                    userPrice.mobile = result;
+                    userPrice.price = $scope.price;
+                    userPrice.goodsId = goodsId;
+                    $http.post( "/users/add-price",{userPrice:userPrice}).success(function(postData){
+                        if(postData) {
+                            var tip = postData.optTip;
+                            if(tip == '恭喜您，您成功拍得此件拍品'|| tip == '当前您出价最高' ){
+                                $scope.btnDisable = true;
+                            }
+                            if(tip == '当前您出价最高'){
+                                timeId = setInterval(checkPrice, 3000);
+                            }
+                            Example.show(tip);
+                        }
+                    });
+                }
+            });
+        }
+        //定时刷新
+        var checkPrice = function (){
+            $http.get("/goods/find-highest-price?id="+currentGoodId).success(function(data){
+                var msg = data.highestPrice;
+                if(currentMobile != msg[0]){
+                    bootbox.alert("已经有人出价比您高");
+                    $scope.btnDisable = false;
+                    clearInterval(timeId);
+                }
+            });
+        }
+    });
 }]);
 
 //拍卖纪录

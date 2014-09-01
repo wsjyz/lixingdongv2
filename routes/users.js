@@ -21,12 +21,25 @@ router.post('/add-price', function(req, res,next) {
                 }else{
                     userPrice.optTip = '竞拍成功';
                 }
-            }else{
-                userPrice.optTip = '竞拍成功';
-            }
-            res.send(userPrice);
-        });
+                res.send(userPrice);
+            }else{//如果是竞拍则需要获取最高价
+                DataModel.findHighestPrice(userPrice.goodsId,function(err,price){
+                    if(err) return next(err);
 
+                    if(price[0] == userPrice.mobile){
+                        userPrice.optTip = '当前您出价最高';
+                    }else{
+                        userPrice.optTip = '当前最高价为'+price[1];
+                    }
+
+                    userPrice.highestPrice = price;
+                    res.send(userPrice);
+                });
+
+            }
+
+
+        });
 
     });
 });

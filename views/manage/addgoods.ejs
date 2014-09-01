@@ -12,13 +12,14 @@
 <iframe name="resultiframe" src="" style="border: 0px;"></iframe>
 <form id="goodsForm" action="/goods/add" method="post"
       enctype="multipart/form-data" target="resultiframe">
-    <input type="hidden" name="followerCounts" value="<%=goods.followerCounts%>"/>
     <div>物品名称:<input type="text" name="goodsName" value="<%=goods.goodsName%>"/></div>
+    <div>物品简要描述:<input type="text" name="goodsSimpleName" value="<%=goods.goodsSimpleName%>"/></div>
     <div>图片:<input type="file" name="goodsUrlFile" /></div>
     <div>所属区域:<input type="text" name="area" value="<%=goods.area%>"/></div>
     <div>竞拍模式:<input type="radio" name="mode" value="immediately"/>即时出价<input type="radio" name="mode"
                                                                               checked     value="auction" />竞拍</div>
     <div>保留价:<input type="text" name="reservePrice" value="<%=goods.reservePrice%>"/></div>
+    <div>最低价:<input type="text" name="lowestPrice" value="<%=goods.lowestPrice%>"/></div>
     <div>市场价:<input type="text" name="marketPrice" value="<%=goods.marketPrice%>"/></div>
     <div>竞拍结束时间:<input type="text" name="finishTime" value="<%=goods.finishTime%>"/>格式为2014-05-08 11:32:42</div>
     <!--rich editor-->

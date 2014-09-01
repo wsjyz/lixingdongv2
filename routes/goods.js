@@ -29,9 +29,10 @@ router.post('/add',function(req, res,next) {
 
         var goodsModel = {};
         goodsModel.goodsName = fields.goodsName[0];
-        goodsModel.followerCounts = fields.followerCounts[0];
+        goodsModel.goodsSimpleName = fields.goodsSimpleName[0];
         goodsModel.area = fields.area[0];
         goodsModel.mode = fields.mode[0];
+        goodsModel.lowestPrice = fields.lowestPrice[0];
         goodsModel.reservePrice = fields.reservePrice[0];
         goodsModel.marketPrice = fields.marketPrice[0];
         goodsModel.finishTime = fields.finishTime[0];
