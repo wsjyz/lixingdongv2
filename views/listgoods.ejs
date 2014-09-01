@@ -11,6 +11,7 @@
     <script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
     <script src="/js/angular.min.js"></script>
     <script src="/js/angular-route.js"></script>
+    <script src="/js/angular-sanitize.min.js"></script>
   	<script src="/js/bootstrap.min.js"></script>
     <script src="/js/main.js"></script>
 
@@ -41,7 +42,7 @@
                  <div class="la-item-img jumbotron col-xs-11 pull-right" >
                       <div class="la-item-info col-xs-9 text-left">
                           <h4>{{item.goodsName}}</h4>
-                          <span class="intro">{{item.description}}</span>
+                          <span class="intro" ng-bind-html="description"></span>
                           <div class="la-item-join">
                             <i class="la_heart_shaped"></i>
                             <div class="join-count">已有<span class="count-num">

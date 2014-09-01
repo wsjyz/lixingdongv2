@@ -37,6 +37,7 @@ router.post('/add',function(req, res,next) {
         goodsModel.marketPrice = fields.marketPrice[0];
         goodsModel.finishTime = fields.finishTime[0];
         goodsModel.description = fields.description[0];
+        goodsModel.orgName = fields.orgName[0];
         goodsModel.showOrder = 0;
         goodsModel.followUser = 0;
         goodsModel.createTime = new Date().getTime();
