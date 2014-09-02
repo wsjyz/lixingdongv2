@@ -175,14 +175,14 @@ app.controller('UsefulActivityAuctionCtrl',['$scope', '$http', '$location','$sce
         var timeId;
         var currentGoodId;
         var currentMobile;
-        $scope.addPrice = function(goodsId){
+        $scope.addPrice = function(){
             if(typeof ($scope.price) == 'undefined') {
-                console.log('333')
+                return false;
             }
 
             bootbox.prompt("请输入手机号", function(result) {
                 //给全局变量赋值，定时器要用，setInterval不接受参数
-                currentGoodId = goodsId;
+                currentGoodId = id;
                 currentMobile = result;
                 if (result === null || result == '') {
                     Example.show('手机号不能为空');
@@ -190,7 +190,7 @@ app.controller('UsefulActivityAuctionCtrl',['$scope', '$http', '$location','$sce
                     var userPrice = {};
                     userPrice.mobile = result;
                     userPrice.price = $scope.price;
-                    userPrice.goodsId = goodsId;
+                    userPrice.goodsId = id;
                     $http.post( "/users/add-price",{userPrice:userPrice}).success(function(postData){
                         if(postData) {
                             var tip = postData.optTip;
@@ -222,14 +222,27 @@ app.controller('UsefulActivityAuctionCtrl',['$scope', '$http', '$location','$sce
 
 //拍卖纪录
 app.controller('AuctionRecordCtrl',['$scope', '$http', '$location', function ($scope, $http, $location) {
-    $http.get( "/users/find-history-price?mobile=22").success(function(data){
-        $scope.items = data;
-    });
+    $scope.init = function(mobile)
+    {
+        //This function is sort of private constructor for controller
+        $scope.mobile = mobile;
+        $http.get( "/users/find-history-price?mobile="+$scope.mobile).success(function(data){
+            $scope.items = data;
+        });
+    };
+
 
     //删除数据
-    $scope.deleteItemData = function(id){
-        $http.get( "/users/delete-price?recordId="+id).success(function(data){
-
+    $scope.deleteItemData = function(record){
+        var params = {};
+        params.mobile = record.mobile;
+        params.price = record.price;
+        params.goodsId = record.goodsId;
+        params.optTime = record.optTime;
+        $http.post( "/users/delete-price",{record:params}).success(function(data){
+            $http.get( "/users/find-history-price?mobile="+$scope.mobile).success(function(data){
+                $scope.items = data;
+            });
         });
     }
 }]);

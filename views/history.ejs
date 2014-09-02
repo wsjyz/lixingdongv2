@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="zh-cn" ng-app="lxd">
   <head>
-    <title>拍卖纪录</title>
+    <title><%=title%></title>
 	  <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- Bootstrap -->
-    <link rel="stylesheet" href="/css/bootstrap.min.css"></link>
-    <link rel="stylesheet" href="/css/main.css"></link>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
 
     <script type="text/javascript" src="/js/jquery-1.10.2.min.js"></script>
     <script src="/js/angular.min.js"></script>
-      <script src="/js/angular-route.js"></script>
-      <script src="/js/angular-sanitize.min.js"></script>
+    <script src="/js/angular-route.js"></script>
+    <script src="/js/angular-sanitize.min.js"></script>
   	<script src="/js/bootstrap.min.js"></script>
     <script src="/js/main.js"></script>
 
@@ -23,17 +23,17 @@
     <![endif]-->
   </head>
   <body>
-    <div class="container text-center col-xs-12" ng-controller="AuctionRecordCtrl">
+    <div class="container text-center col-xs-12" ng-controller="AuctionRecordCtrl" ng-init="init('<%=mobile%>')">
         <div class="ar-header  row">
           <img ng-src="/img/secretariat/st_banner.png" />
         </div>
         <div class="ar-title row">
-          <h4>历史订单</h4>
+          <h4><%=title%></h4>
         </div>
         <div class="ar-content">
             <div class="row col-xs-12" ng-repeat="item in items">
               <div class="ar-img col-xs-4">
-                <img ng-src="/upload/users/{{item.goodsId}}.png"/>
+                <img ng-src="/upload/goods/{{item.goodsId}}.png"/>
               </div>
               <div class="ar-info">
                 <div class="pull-left text-left">
@@ -42,7 +42,7 @@
                     <p class="ar-info-item">成交价格: ¥ {{item.price}}</p>
                 </div>
                 <div class="ar-opt pull-right">
-                    <div class="ar-del" ng-click="deleteItemData(item.goodsId)"><span>删除</span></div>
+                    <div class="ar-del" ng-click="deleteItemData(item)"><span>删除</span></div>
                 </div>
               </div>
             </div>

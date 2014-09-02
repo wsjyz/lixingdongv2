@@ -14,7 +14,6 @@ router.post('/add-price', function(req, res,next) {
 
         DataModel.findDataById(userPrice.goodsId,function(err,goods){
             if(err) return next(err);
-
             if(goods.mode == 'immediately'){//如果是即时出价，判断是否比保留价高
                 if(parseInt(goods.reservePrice) <= parseInt(userPrice.price)){
                     userPrice.optTip = '恭喜您，您成功拍得此件拍品';
@@ -40,13 +39,26 @@ router.post('/add-price', function(req, res,next) {
 
 
         });
-
+        res.cookie('lxdmoby',userPrice.mobile,{maxAge:60*60*24*30});//cookie名称里面不能有-
     });
 });
 router.get('/to-history', function(req, res,next) {
-    res.render('history',{title:"拍卖纪录"});
+    req.cookies = parseCookie(req.headers.cookie);
+    res.render('history',{title:"拍卖纪录",mobile:req.cookies.lxdmoby});
 
 });
+var parseCookie = function(cookie){
+    var cookies = {};
+    if(!cookies){
+        return cookies;
+    }
+    var list = cookie.split(';');
+    for(var i= 0;i < list.length;i++){
+        var pair = list[i].split('=');
+        cookies[pair[0].trim()] = pair[1];
+    }
+    return cookies;
+}
 router.get('/find-history-price', function(req, res,next) {
     DataModel.findUserPriceHistory(req.param('mobile'),function(err,items){
         if(err) return next(err);
@@ -55,7 +67,7 @@ router.get('/find-history-price', function(req, res,next) {
     });
 
 });
-router.post('delete-price',function(req,res,next){
+router.post('/delete-price',function(req,res,next){
     var record = req.body.record;
     delete record.goods;
     delete record.result;
@@ -63,6 +75,7 @@ router.post('delete-price',function(req,res,next){
     data.removeFromList(function(err){
         if(err) return next(err);
         res.send("SUCCESS");
-    })
+    });
+    res.send("SUCCESS");
 });
 module.exports = router;

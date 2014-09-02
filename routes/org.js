@@ -13,8 +13,12 @@ router.get('/', function(req, res) {
 router.get('/to-add/:type', function(req, res) {
     var orgTypeValue = req.param('type');
     var titleValue = '姓名';
-    if(orgTypeValue == 'sponsors') titleValue = '单位';
-    res.render('addorg', { title: titleValue,orgType: orgTypeValue});
+    var htmlTitle = '秘书处';
+    if(orgTypeValue == 'sponsors') {
+        titleValue = '单位';
+        htmlTitle = '赞助企业';
+    }
+    res.render('addorg', { title: titleValue,orgType: orgTypeValue,htmlTitle:htmlTitle});
 });
 
 router.post('/add',function(req, res,next) {
