@@ -222,5 +222,7 @@ app.controller('UsefulActivityAuctionCtrl',['$scope', '$http', '$location','$sce
 
 //拍卖纪录
 app.controller('AuctionRecordCtrl',['$scope', '$http', '$location', function ($scope, $http, $location) {
-
+    $http.get( "/users/find-history-price?mobile=22").success(function(data){
+        $scope.items = data;
+    });
 }]);
