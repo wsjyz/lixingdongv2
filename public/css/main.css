@@ -314,7 +314,7 @@ a{cursor: pointer;}
 	display: block;
     height: 20px;
     margin-left: 50%;
-    width: 100%;
+    width: 23px;
     background-color:#FF7744; 
     color: #ffffff;
     font-size: 10px;
@@ -459,7 +459,7 @@ a{cursor: pointer;}
     height: 20px;
     margin-left: 50%;
     width: 20px;
-    margin-top: -141%;
+    margin-top:-28%;
 }
 
 .container .uaa-xing{
