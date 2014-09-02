@@ -59,7 +59,7 @@ app.controller('SupportEnterprisesJoinCtrl',['$scope', '$http', '$location', fun
 }]);
 
 //秘书处
-app.controller('SecretariatCtrl',['$scope', '$http', '$location', function ($scope, $http, $location) {
+app.controller('SecretariatCtrl',['$scope', '$http', '$window', function ($scope, $http, $window) {
 		
 	//加载数据
  	$http.get("/org/find-org-list/secretariat").success(function(data){
@@ -72,7 +72,12 @@ app.controller('SecretariatCtrl',['$scope', '$http', '$location', function ($sco
         $scope.person = 297;
     })
     $scope.joinChange = function(){
-        window.location.href = '/org/to-add/secretariat';
+        if($scope.join){
+            $scope.join = false;
+        }else{
+            $scope.join = true;
+            $window.location.href = '/org/to-add/secretariat';
+        }
     };
 
 }]);
@@ -97,7 +102,7 @@ app.controller('LatestActivityCtrl',['$scope', '$http', '$location', function ($
 
 
 //公益活动
-app.controller('UsefulActivityCtrl',['$scope', '$http', '$location', function ($scope, $http, $location) {
+app.controller('UsefulActivityCtrl',['$scope', '$http', '$window', function ($scope, $http, $window) {
 
 
     function fmDate(timeStr){
@@ -118,7 +123,7 @@ app.controller('UsefulActivityCtrl',['$scope', '$http', '$location', function ($
  		$scope.items = list;
  	});
     $scope.toView = function(id){
-        console.log(id);
+        $window.location.href="/goods/to-view/"+id;
     }
 //    $scope.deliberatelyTrustDangerousSnippet = function() {
 //        return $sce.trustAsHtml($scope.description);
