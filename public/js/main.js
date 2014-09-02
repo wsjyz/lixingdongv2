@@ -225,4 +225,11 @@ app.controller('AuctionRecordCtrl',['$scope', '$http', '$location', function ($s
     $http.get( "/users/find-history-price?mobile=22").success(function(data){
         $scope.items = data;
     });
+
+    //删除数据
+    $scope.deleteItemData = function(id){
+        $http.get( "/users/delete-price?recordId="+id).success(function(data){
+
+        });
+    }
 }]);
