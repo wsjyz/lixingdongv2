@@ -4,6 +4,7 @@
 exports.redis_config = {
     redisHost: '192.168.0.229',//115.29.47.23,127.0.0.1 192.168.0.229
     redisPort: 6379,
+    redisDb: 1,
     sskeyPrefix:'lxd-model-sset-',
     skeyPrefix:'lxd-model-str-'
 };

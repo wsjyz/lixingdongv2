@@ -47,7 +47,7 @@ router.post('/add',function(req, res,next) {
 
             if(err) return next(err);
 
-            fs.rename(files.goodsUrlFile[0].path, './public/upload/goods/'+goods.id+'.jpg', function(err) {
+            fs.rename(files.goodsUrlFile[0].path, './public/upload/goods/'+goods.id+'.png', function(err) {
                 if (err) throw err;
                 // 删除临时文件夹文件,
                 fs.unlink(files.goodsUrlFile[0].path, function() {

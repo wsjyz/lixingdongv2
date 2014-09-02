@@ -123,7 +123,7 @@ app.controller('UsefulActivityCtrl',['$scope', '$http', '$window', function ($sc
  		$scope.items = list;
  	});
     $scope.toView = function(id){
-        $window.location.href="/goods/to-view/"+id;
+        $window.location.href = '/goods/to-view/'+id
     }
 //    $scope.deliberatelyTrustDangerousSnippet = function() {
 //        return $sce.trustAsHtml($scope.description);
@@ -143,8 +143,10 @@ app.controller('LatestActivityDetailCtrl',['$scope', '$http', '$location', funct
 //公益活动详情-详情
 app.controller('UsefulActivityAuctionCtrl',['$scope', '$http', '$location','$sce',
     function ($scope, $http, $location,$sce) {
+        var hrefStr = window.location.href;
+        var id = hrefStr.substring(hrefStr.lastIndexOf('/')+1,hrefStr.length);
     //   /goods/find-goods-by-id/e4e10100318511e4b7e7596f1b256072
-    $http.get( "/goods/find-goods-by-id/7c897e4031d811e4aedfbb3ecb74fc9a").success(function(data){
+    $http.get( "/goods/find-goods-by-id/"+id).success(function(data){
         $scope.goodsName = data.goods.goodsName;
         $scope.goodsSimpleName = data.goods.goodsSimpleName;
         $scope.followUser  = data.goods.followUser;
