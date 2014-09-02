@@ -50,11 +50,12 @@ router.post('/add',function(req, res,next) {
             fs.rename(files.goodsUrlFile[0].path, './public/upload/goods/'+goods.id+'.png', function(err) {
                 if (err) next(err);
                 // 删除临时文件夹文件,
-                fs.unlink(files.goodsUrlFile[0].path, function() {
-                    if (err) throw err;
-                    goodsModel.optTip="保存成功";
-                    res.send(goodsModel);
-                });
+//                fs.unlink(files.goodsUrlFile[0].path, function() {
+//                    if (err) throw err;
+//
+//                });
+                goodsModel.optTip="保存成功";
+                res.send(goodsModel);
             });
 
 
