@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>新增活动</title>
+    <script src="/javascripts/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript" src="/ckeditor/ckeditor.js"></script>
+
+</head>
+<body>
+<iframe name="resultiframe" src="" style="border: 0px;"></iframe>
+<form id="actForm" action="/act/add" method="post"
+      enctype="multipart/form-data" target="resultiframe">
+    <div>活动名称:<input type="text" name="actName" /></div>
+    <div>物品简要描述:<input type="text" name="actSimpleName" /></div>
+    <div>图片:<input type="file" name="actUrlFile" /></div>
+    <div>举办地:<input type="text" name="area" /></div>
+    <div>活动开始时间:<input type="text" name="startTime" />格式为2014-05-08 11:32</div>
+    <div>活动结束时间:<input type="text" name="finishTime" />格式为2014-05-08 11:32</div>
+    <div>参与人数:<input type="text" name="followUser" /></div>
+    <!--rich editor-->
+    <textarea rows="30" cols="50" name="description"></textarea>
+    <script type="text/javascript">CKEDITOR.replace('description');</script>
+    <input type="submit" value="确定"/>
+</form>
+
+</body>
+</html>

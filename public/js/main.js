@@ -88,27 +88,34 @@ app.controller('AboutOursCtrl',['$scope', '$http', '$location', function ($scope
 
 }]);
 
-
+function fmDate(timeStr){
+    var finishTime = new Date(Date.parse(timeStr));
+    return (finishTime.getMonth() + 1)+"."+finishTime.getDate();
+}
 
 //最新活动
-app.controller('LatestActivityCtrl',['$scope', '$http', '$location', function ($scope, $http, $location) {
+app.controller('LatestActivityCtrl',['$scope', '$http', '$window', function ($scope, $http, $window) {
 
 	//加载数据
- 	$http.get('data/latestActivity.json').success(function(data){
- 		$scope.items = data;
-
- 	})	
+ 	$http.get('/act/find-act-list').success(function(data){
+        var i;
+        var list = [];
+        var item;
+        for(i in data){
+            item = data[i];
+            item.startTime = fmDate(data[i].startTime);
+            list.push(item);
+        }
+        $scope.items = list;
+ 	});
+    $scope.toView = function(id){
+        $window.location.href = '/act/to-view/'+id
+    }
 }]);
 
 
 //公益活动
 app.controller('UsefulActivityCtrl',['$scope', '$http', '$window', function ($scope, $http, $window) {
-
-
-    function fmDate(timeStr){
-        var finishTime = new Date(Date.parse(timeStr));
-        return (finishTime.getMonth() + 1)+"."+finishTime.getDate();
-    }
 
 	//加载数据
  	$http.get( "/goods/find-goods-list/goods").success(function(data){
@@ -131,11 +138,15 @@ app.controller('UsefulActivityCtrl',['$scope', '$http', '$window', function ($sc
 }]);
 
 //最新活动-详情
-app.controller('LatestActivityDetailCtrl',['$scope', '$http', '$location', function ($scope, $http, $location) {
-
+app.controller('LatestActivityDetailCtrl',['$scope', '$http', '$location','$sce', function ($scope, $http, $location,$sce) {
+    var hrefStr = window.location.href;
+    var id = hrefStr.substring(hrefStr.lastIndexOf('/')+1,hrefStr.length);
 	//加载数据
- 	$http.get('data/latestActivityDetail.json').success(function(data){
- 		$scope.item = data;
+ 	$http.get("/act/find-act-by-id/"+id).success(function(data){
+ 		$scope.item = data.act;
+        $scope.deliberatelyTrustDangerousSnippet = function() {
+            return $sce.trustAsHtml($scope.item.description);
+        };
  	})	
 }]);
 
