@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>管理企业/秘书处</title>
+    <link rel="stylesheet" href="/css/popup.css">
+    <style type="text/css" title="currentStyle">
+        @import "/css/demo_page.css";
+        @import "/css/demo_table_jui.css";
+        @import "/css/jquery-ui-1.8.4.custom.css";
+        .dataTables_info { padding-top: 0;font-size: 0.8em }
+        .dataTables_paginate { padding-top: 0; }
+        .css_right { float: right; }
+        #example_wrapper .fg-toolbar { font-size: 0.8em }
+        #theme_links span { float: left; padding: 2px 10px; }
+        .toolbar {
+            float: left;font-size: 0.8em
+        }
+        #center{
+            position: absolute;
+            width:800px;
+            height:200px;
+            left:20%;
+            top:10%;
+        }
+    </style>
+    <script src="/javascripts/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript" language="javascript" src="/javascripts/jquery.dataTables.min.js"></script>
+    <script src="/javascripts/jquery.bpopup.min.js"></script>
+    <script src="/javascripts/jquery.livequery.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        var deleteGoods = function (goodsId){
+            if(confirm("你是否要删除？")){
+                $('#popup2').bPopup({
+                    content:'ajax', //'ajax', 'iframe' or 'image'
+                    contentContainer:'.content',
+                    scrollBar:true,
+                    loadUrl:'/org/find-org-by-id'+goodsId, //Uses jQuery.load()
+                    onClose:function(){
+                        window.location.reload();
+                    }
+                });
+            }
+        }
+        var toEdit = function(id,type){
+            window.location.href = "/org/to-view/"+id;
+        }
+        var viewPriceList = function(goodsId){
+            $('#popup2').bPopup({
+                content:'iframe', //'ajax', 'iframe' or 'image'
+                contentContainer:'.content',
+                iframeAttr:'scrolling="yes"',
+                loadUrl:'/goods/manage/to-price-list/'+goodsId, //Uses jQuery.load()
+                onClose:function(){
+                    //window.location.reload();
+                }
+            });
+        }
+        $(document).ready(function() {
+            var oTable = $('#example').dataTable( {
+                "bJQueryUI": true,
+                "sPaginationType": "full_numbers",
+                "bProcessing": true,
+                "sAjaxSource": "/org/manage/find-org-list/<%=orgType%>",
+                "fnServerParams": function ( aoData ) {
+                    aoData.push( { "name": "start", "value": 0 } );
+                    aoData.push( { "name": "end", "value": -1 } );
+                },
+                "bServerSide": true,
+                "aoColumns": [
+                    { "mData": "name" },
+                    { "mData": "tel" },
+                    { "mData": "type" },
+                    { "mData": "address" },
+                    { "mData": "id" }
+                ],
+                "aoColumnDefs": [
+                    {
+                        "mRender": function ( data, type, row ) {
+                            return '<a href ="#" onclick="toEdit(\''+data+'\')">编辑</a>'+'&nbsp;'+
+                                    '<a href ="#" onclick="deleteGoods(\''+data+'\')">删除</a>'+'&nbsp;';
+                        },
+                        "aTargets": [ 4 ]
+                    }
+                ]
+            } );
+
+            $(".b-iframe").livequery(function(){     //一定要有.load等载入完成
+                $(this).load(function(){
+                    var iframeWidth = $(this).contents().find("[id='container']").width();     //获取高度
+                    var iframeHeight = $(this).contents().find("[id='container']").height();
+                    $(this).width(iframeWidth+200);    //iframe高度等于嵌进来html的高度
+                    $(this).height(iframeHeight);
+                });
+            });
+
+
+        } );
+
+    </script>
+</head>
+<body>
+<div id="popup2"
+     style="left: 433px; position: absolute; top: 2060px; z-index: 9999; opacity: 1; display: block; height: auto; width:auto;">
+    <span class="button b-close"><span>X</span></span>
+    <div class="content" style="height: auto; width: auto;"></div>
+</div>
+<div >
+    <div style="margin-top:20px;margin-bottom: 20px;">
+        <input type="button" value="添加竞拍品"
+               onclick="window.location.href='/goods/toadd?goodsId='"/>
+    </div>
+    <table cellpadding="0" cellspacing="0" border="0" class="display"  id="example">
+        <thead>
+        <tr>
+            <th width="35%">名称</th>
+            <th width="15%">电话</th>
+            <th width="15%">类型</th>
+            <th width="20%">地址</th>
+            <th width="10%">操作</th>
+        </tr>
+        </thead>
+        <tbody>
+
+    </table>
+</div>
+</body>
+</html>

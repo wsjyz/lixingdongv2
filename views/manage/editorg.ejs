@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>编辑</title>
+    <script src="/javascripts/jquery-2.0.0.min.js"></script>
+    <script>
+        $(function(){
+            $.ajax({ url:"/org/find-org-by-id/<%=id%>" })
+                    .done(function(data) {
+                        var msg = data.org;
+                        $('#name').val(msg.name);
+                        $('#tel').val(msg.tel);
+                        $('#address').val(msg.address);
+                        $('#description').val(msg.description);
+                        $('#id').val(msg.id);
+                        var orgType = '秘书处';
+                        if(msg.type == 'sponsors'){
+                            orgType = '赞助企业';
+                        }
+                        $('#orgType').html(orgType);
+                    });
+        });
+    </script>
+</head>
+<body>
+
+<iframe name="resultiframe" src="" style="border: 0px;"></iframe>
+<form id="actForm" action="/org/manage/save" method="post" enctype="multipart/form-data" target="resultiframe">
+    <input type="hidden"  id="id" name="id" >
+    <div>
+        <div >
+            <label  for="name"><span id="orgType"></span>名称</label>
+            <input type="text"  id="name" name="name" >
+        </div>
+        <div >
+            <label  for="tel">电话</label>
+            <input type="text"  id="tel" name="tel" >
+        </div>
+        <div >
+            <label  for="address">地址</label>
+            <input type="text"  id="address"  name="address" >
+        </div>
+        <div >
+            <label  for="description">简介</label>
+            <textarea   cols="3" rows="4" id="description"  name="description"></textarea>
+        </div>
+        <div >
+            <label  for="orgFile">图片</label>
+            <input type="file" name="orgFile" />
+        </div>
+        <div >
+            <label  for="applyStatus">审批状态</label>
+            <input type="radio" name="applyStatus" value="PASS"/>审批通过<input type="radio" name="applyStatus"
+                                                                            checked     value="UNPASS" />不通过
+        </div>
+    </div>
+    <input type="submit" value="确定"/>
+</form>
+</body>
+</html>
