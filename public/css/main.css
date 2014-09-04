@@ -12,20 +12,27 @@ a{cursor: pointer;}
   height: 100%;
   position: relative;
 }
+
+.container .st-name-text span,.container .content .item-single .name-text,.container .ua-title{
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis;
+}
+
 /** 赞助企业*/
 .container .header-image{
-  left: 21px;
-  right:21px;
-  top: 13px;
-  position: absolute;
-  height: 100px;
   display: inline-block;
+    height: 140px;
+    left: 19px;
+    position: absolute;
+    right: 19px;
+    top: 3px;
 }
 
 .container .footer-image{
-  width: 100%;
-  bottom: 0px;
-  position: absolute;
+  bottom: 3px;
+    position: absolute;
+    width: 100%;
 }
 
 .container .item-join{
@@ -56,15 +63,15 @@ a{cursor: pointer;}
 }
 .container .count-tip .num{color: #e20001}
 .container .content {
-    left: 6px;
-    right: 6px;
-    top: 118px;
     bottom: 5px;
-    position: absolute;;
+    display: inline-block;
+    left: 0;
     margin-top: 10px;
-    overflow-x:hidden;
-    overflow-y:auto; 
-    display: inline-block; 
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: absolute;
+    right: 12px;
+    top: 139px;
 }
 
 .container .content .item-single{
@@ -73,7 +80,10 @@ a{cursor: pointer;}
 }
 
 .container .content .item-single .item-cont{
-    padding: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 3px;
 }
 
 .item-single .la-left-bar{
@@ -85,19 +95,19 @@ a{cursor: pointer;}
     margin-left: 50%;
     width: 20px;
     height: 20px;
-    margin-top: -73px;
+    margin-top: -57px;
 }
 
  .container .content .item-single .item-img{
     margin-left: 6%;
     /*margin-top: -22px;*/
     width: 93 %;
-    height: 135px;
+    height: 105px;
     border: 1px solid #fff;
     border-radius: 5px;
 }
 .container .content .item-single .item-name{
-   width: 93%;
+   width: 93.5%;
    margin-left: 6%;
    margin-top: -32px;
    height: 32px;
@@ -156,24 +166,24 @@ a{cursor: pointer;}
 
 /** 秘书处*/
 .container .st-header{
-  left: 21px;
-  right:21px;
-  top: 13px;
-  position: absolute;
-  height: 175px;
   display: inline-block;
+    height: 140px;
+    left: 18px;
+    position: absolute;
+    right: 18px;
+    top: 3px;
 }
 
 .container .st-content{
-	 left: 6px;
-    right: 6px;
-    top: 190px;
-    bottom: 5px;
-    position: absolute;;
+	  bottom: 5px;
+    display: inline-block;
+    left: 2px;
     margin-top: 10px;
-    overflow-x:hidden;
-    overflow-y:auto; 
-    display: inline-block; 
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: absolute;
+    right: 2px;
+    top: 140px;
 }
 
 .container .st-content .st-item-single{
@@ -275,12 +285,12 @@ a{cursor: pointer;}
 
 /** 最新活动*/
 .container .la-header{
-  left: 21px;
-  right:21px;
-  top: 13px;
-  position: absolute;
-  height: 175px;
   display: inline-block;
+    height: 140px;
+    left: 17px;
+    position: absolute;
+    right: 17px;
+    top: 3px;
 }
 
 .container .la-content{
@@ -314,7 +324,7 @@ a{cursor: pointer;}
 	display: block;
     height: 20px;
     margin-left: 50%;
-    width: 23px;
+    width: 100%;
     background-color:#FF7744; 
     color: #ffffff;
     font-size: 10px;
@@ -322,12 +332,15 @@ a{cursor: pointer;}
 }
 
 .container .la-content .la-item-img,.container .ua-content .la-item-img{
-	margin-right: 6px;
-    width: 94%;
-    padding: 5px;
-    margin-bottom: 8px;
-    background-color: #ffffff;
+	 background-color: #ffffff;
     cursor: pointer;
+    margin-bottom: 4px;
+    margin-right: 6px;
+    padding-bottom: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    width: 94%;
 }
 
 .container .la-content .la-item-img:hover,.container .ua-content .la-item-img:hover{
@@ -345,7 +358,7 @@ a{cursor: pointer;}
 }
 
 .container .la-content .la-item-img .la-item-info .intro,.container .ua-content .la-item-img .la-item-info .intro{
-	font-size: 14px;
+	font-size: 13px;
 	color: #757575;
 	line-height: 1.5;
 	display: inline-block;
@@ -354,7 +367,7 @@ a{cursor: pointer;}
 
 .container .la-content .la-item-img .item-pic,.container .ua-content .la-item-img .item-pic{
 	margin-bottom: 0px;
-	width: 35%;
+	width: 30%;
 	margin-right: 4px;
 	padding: 0;
 }
@@ -370,7 +383,8 @@ a{cursor: pointer;}
 
 .container .la-content .la-item-img .la-item-join .join-count,.container .ua-content .la-item-img .la-item-join .join-count{
 	margin-top: -32px;
-	margin-left:20px
+	margin-left:20px;
+  font-size: 16px;
 }
 
 .container .la-content .la-item-join .join-count .count-num,.container .ua-content .la-item-join .join-count .count-num{
@@ -390,35 +404,37 @@ a{cursor: pointer;}
 .container .ua-logo{
 	background: url("../img/usefulActivity/ua_logo.png") no-repeat top;
 	display: block;
-    height: 90px;
-    width: 90px;
-    margin-left: 9%;
-    margin-top: -35px;
+    height: 67px;
+    margin-left: 6%;
+    margin-top: -40px;
     position: absolute;
+    width: 67px;
 }
 
 .container .ua-title{
-    top: 202px;
-    left: 7px;
-    right: 7px;
-    position: absolute;
     font-weight: bold;
+    left: -2px;
+    position: absolute;
+    right: 7px;
+    top: 154px;
+    width: 70%;
+    margin-left: 81px;
 }
 
 .container .ua-title .ua-title-part{
-    margin-left: 103px;
+    margin-left: 20%;
 }
 
 .container .ua-content{
-	left: 7px;
-    right: 7px;
-    top: 250px;
-    bottom: 5px;
-    position: absolute;
+	bottom: 3px;
+    display: inline-block;
+    left: -7px;
     margin-top: 4px;
-    overflow-x:hidden;
-    overflow-y:auto; 
-    display: inline-block; 
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: absolute;
+    right: 2px;
+    top: 194px; 
 }
 
 
@@ -459,7 +475,7 @@ a{cursor: pointer;}
     height: 20px;
     margin-left: 50%;
     width: 20px;
-    margin-top:-28%;
+    margin-top: -141%;
 }
 
 .container .uaa-xing{
