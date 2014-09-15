@@ -36,11 +36,11 @@ a{cursor: pointer;}
 }
 
 .container .item-join{
-  width: 20%; 
-  height: auto;
-  position: absolute;
-  margin-top: -17%;
-  margin-left: 40%;
+    height: 51px;
+    margin-left: 40%;
+    margin-top: -16%;
+    position: absolute;
+    width: 56px;
 }
 
 .container .date{
