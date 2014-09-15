@@ -38,7 +38,7 @@ a{cursor: pointer;}
 .container .item-join{
     height: 51px;
     margin-left: 40%;
-    margin-top: -16%;
+    bottom: -3px;
     position: absolute;
     width: 56px;
 }
@@ -188,7 +188,7 @@ a{cursor: pointer;}
     overflow-y: auto;
     position: absolute;
     right: 2px;
-    top: 140px;
+    top: 133px;
 }
 
 .container .st-content .st-item-single{
