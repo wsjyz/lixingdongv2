@@ -155,5 +155,14 @@ router.get('/manage/find-org-list/:type', function(req, res,next) {
 
 });
 
+router.get('/delete/:id/:type', function(req, res) {
+    var orgTypeValue = req.param('type');
+    var id = req.param('id')
+    OrgModel.removeFromSSetAndStr(id,orgTypeValue,function(err){
+        res.send('SUCCESS');
+    });
+
+});
+
 
 module.exports = router;

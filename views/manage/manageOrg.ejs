@@ -28,13 +28,13 @@
     <script src="/javascripts/jquery.bpopup.min.js"></script>
     <script src="/javascripts/jquery.livequery.min.js"></script>
     <script type="text/javascript" charset="utf-8">
-        var deleteGoods = function (goodsId){
+        var deleteOrg = function (orgId){
             if(confirm("你是否要删除？")){
                 $('#popup2').bPopup({
                     content:'ajax', //'ajax', 'iframe' or 'image'
                     contentContainer:'.content',
                     scrollBar:true,
-                    loadUrl:'/org/find-org-by-id'+goodsId, //Uses jQuery.load()
+                    loadUrl:'/org/delete/'+orgId+'/<%=orgType%>', //Uses jQuery.load()
                     onClose:function(){
                         window.location.reload();
                     }
@@ -77,7 +77,7 @@
                     {
                         "mRender": function ( data, type, row ) {
                             return '<a href ="#" onclick="toEdit(\''+data+'\')">编辑</a>'+'&nbsp;'+
-                                    '<a href ="#" onclick="deleteGoods(\''+data+'\')">删除</a>'+'&nbsp;';
+                                    '<a href ="#" onclick="deleteOrg(\''+data+'\')">删除</a>'+'&nbsp;';
                         },
                         "aTargets": [ 4 ]
                     }
@@ -102,7 +102,7 @@
 <div id="popup2"
      style="left: 433px; position: absolute; top: 2060px; z-index: 9999; opacity: 1; display: block; height: auto; width:auto;">
     <span class="button b-close"><span>X</span></span>
-    <div class="content" style="height: auto; width: auto;"></div>
+    <div class="content" style="height: auto; width: auto;">删除成功</div>
 </div>
 <div >
     <div style="margin-top:20px;margin-bottom: 20px;">
