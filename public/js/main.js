@@ -90,7 +90,18 @@ app.controller('AboutOursCtrl',['$scope', '$http', '$location', function ($scope
 
 function fmDate(timeStr){
     var finishTime = new Date(Date.parse(timeStr));
-    return (finishTime.getMonth() + 1)+"."+finishTime.getDate();
+    var monthInt = parseInt(finishTime.getMonth() + 1);
+    var dateInt = parseInt(finishTime.getDate());
+    var monthStr = ''+monthInt;
+    var dateStr = ''+dateInt;
+    if(monthInt < 10){
+        monthStr = '0'+ monthInt;
+    }
+    if(dateInt < 10){
+        dateStr = '0'+ dateInt;
+    }
+    console.log(monthInt+' '+dateInt+' '+monthStr + dateStr);
+    return monthStr+"."+dateStr;
 }
 
 //最新活动
