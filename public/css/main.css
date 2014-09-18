@@ -475,16 +475,17 @@ a{cursor: pointer;}
 }
 
 .container .uaa-li{
-    background: url("../img/usefulActivityAuction/uaa_li.png") no-repeat top;
+    /*background: url("../img/usefulActivityAuction/uaa_li.png") no-repeat top;*/
     display: block;
     height: 20px;
     margin-left: 50%;
     width: 20px;
     margin-top: -141%;
+    z-index:100;
 }
 
 .container .uaa-xing{
-    background: url("../img/usefulActivityAuction/uaa_xing.png") no-repeat top;
+    /*background: url("../img/usefulActivityAuction/uaa_xing.png") no-repeat top;*/
     display: block;
     height: 20px;
     margin-left: 50%;
@@ -493,7 +494,7 @@ a{cursor: pointer;}
 }
 
 .container .uaa-dong{
-    background: url("../img/usefulActivityAuction/uaa_dong.png") no-repeat top;
+    /*background: url("../img/usefulActivityAuction/uaa_dong.png") no-repeat top;*/
     display: block;
     height: 20px;
     margin-left: 50%;
