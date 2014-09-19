@@ -326,7 +326,7 @@ a{cursor: pointer;}
 }
 
 .container .la-content .la_date,.container .ua-content .la_date{
-	display: block;
+	display: inline-block;
     height: 20px;
     margin-left: 50%;
     width: 100%;
