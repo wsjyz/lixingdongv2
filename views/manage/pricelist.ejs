@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="/javascripts/jquery-2.0.0.min.js"></script>
+    <script src="/javascripts/jquery.livequery.min.js"></script>
+    <script type="application/javascript">
+
+        function deletePrice(mobile){
+            var goodsId = $('#goodsId').val();
+            $.ajax({
+                type:"GET",
+                url:"/goods/manage/delete-price/"+goodsId+"/"+mobile
+            }).done(function(msg){
+                $('#'+mobile).remove();
+            });
+        }
+        $(function(){
+
+            var goodsId = $('#goodsId').val();
+            $.getJSON("/goods/manage/get-price-list/"+goodsId, function(data) {
+                $("#roomList").html("");//清空info内容
+                $.each(data.goods, function(i, item) {
+                    $("#roomList").append(
+                            "<tr id='"+item[0]+"'>"+
+                                    "<td>" + (i+1) + "</td>" +
+                                    "<td>" + item[0] + "</td>" +
+                                    "<td>" + item[1] + "</td>"+
+                                    "<td><a href='javascript:deletePrice("+item[0]+");' >删除</a></td>"+
+                            "<tr>"
+                    );
+                });
+            });
+
+            $(".b-iframe").livequery(function(){     //一定要有.load等载入完成
+                $(this).load(function(){
+                    var iframeWidth = $(this).contents().find("[id='container']").width();     //获取高度
+                    var iframeHeight = $(this).contents().find("[id='container']").height();
+                    $(this).width(iframeWidth+20);    //iframe高度等于嵌进来html的高度
+                    $(this).height(iframeHeight);
+                });
+            });
+
+
+        });
+    </script>
+
+</head>
+<body>
+<input type="hidden" value="<%=id%>" id="goodsId"/>
+<div id="datalist" class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">竞价信息</div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>电话</th>
+            <th>价格</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="roomList">
+
+        </tbody>
+    </table>
+</div>
+</body>
+</body>
+</html>

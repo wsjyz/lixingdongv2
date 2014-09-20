@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>管理企业/秘书处</title>
+    <title>管理竞拍品</title>
     <link rel="stylesheet" href="/css/popup.css">
     <style type="text/css" title="currentStyle">
         @import "/css/demo_page.css";
@@ -28,21 +28,21 @@
     <script src="/javascripts/jquery.bpopup.min.js"></script>
     <script src="/javascripts/jquery.livequery.min.js"></script>
     <script type="text/javascript" charset="utf-8">
-        var deleteOrg = function (orgId){
+        var deleteGoods = function (goodsId){
             if(confirm("你是否要删除？")){
                 $('#popup2').bPopup({
                     content:'ajax', //'ajax', 'iframe' or 'image'
                     contentContainer:'.content',
                     scrollBar:true,
-                    loadUrl:'/org/delete/'+orgId+'/<%=orgType%>', //Uses jQuery.load()
+                    loadUrl:'/goods/delete/'+goodsId+'/goods', //Uses jQuery.load()
                     onClose:function(){
                         window.location.reload();
                     }
                 });
             }
         }
-        var toEdit = function(id,type){
-            window.location.href = "/org/to-view/"+id;
+        var toEdit = function(goodsId){
+            window.location.href = "/goods/to-add?goodsId="+goodsId;
         }
         var viewPriceList = function(goodsId){
             $('#popup2').bPopup({
@@ -60,24 +60,25 @@
                 "bJQueryUI": true,
                 "sPaginationType": "full_numbers",
                 "bProcessing": true,
-                "sAjaxSource": "/org/manage/find-org-list/<%=orgType%>",
+                "sAjaxSource": "/goods/manage/find-goods-list/goods",
                 "fnServerParams": function ( aoData ) {
                     aoData.push( { "name": "start", "value": 0 } );
                     aoData.push( { "name": "end", "value": -1 } );
                 },
                 "bServerSide": true,
                 "aoColumns": [
-                    { "mData": "name" },
-                    { "mData": "tel" },
-                    { "mData": "type" },
-                    { "mData": "address" },
+                    { "mData": "goodsName" },
+                    { "mData": "area" },
+                    { "mData": "finishTime" },
+                    { "mData": "lowestPrice" },
                     { "mData": "id" }
                 ],
                 "aoColumnDefs": [
                     {
                         "mRender": function ( data, type, row ) {
                             return '<a href ="#" onclick="toEdit(\''+data+'\')">编辑</a>'+'&nbsp;'+
-                                    '<a href ="#" onclick="deleteOrg(\''+data+'\')">删除</a>'+'&nbsp;';
+                                    '<a href ="#" onclick="deleteGoods(\''+data+'\')">删除</a>'+'&nbsp;'+
+                                    '<a href ="#" onclick="viewPriceList(\''+data+'\')">查看结果</a>';
                         },
                         "aTargets": [ 4 ]
                     }
@@ -108,16 +109,14 @@
     <div style="margin-top:20px;margin-bottom: 20px;">
         <input type="button" value="添加竞拍品"
                onclick="window.location.href='/goods/to-add'"/>
-        <input type="button" value="管理竞拍品"
-               onclick="window.location.href='/goods/manage/to-list'"/>
     </div>
     <table cellpadding="0" cellspacing="0" border="0" class="display"  id="example">
         <thead>
         <tr>
             <th width="35%">名称</th>
-            <th width="15%">电话</th>
-            <th width="15%">类型</th>
-            <th width="20%">地址</th>
+            <th width="15%">所属区域</th>
+            <th width="15%">竞拍结束时间</th>
+            <th width="20%">最低价</th>
             <th width="10%">操作</th>
         </tr>
         </thead>

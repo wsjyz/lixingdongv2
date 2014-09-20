@@ -18,8 +18,13 @@ router.get('/', function(req, res) {
 });
 router.get('/to-add', function(req, res) {
     var titleValue = '添加竞拍品';
-    var goods = new DataModel();
-    res.render('manage/addgoods', { title: titleValue,goods:goods});
+    var goodsId = req.param('goodsId');
+    if(goodsId){
+        res.render('manage/addgoods', { goodsId: goodsId});
+    }else{
+        res.render('manage/addgoods');
+    }
+
 });
 
 router.post('/add',function(req, res,next) {
@@ -42,6 +47,7 @@ router.post('/add',function(req, res,next) {
         goodsModel.followUser = 0;
         goodsModel.createTime = new Date().getTime();
         goodsModel.type = "goods";
+        goodsModel.id = fields.goodsId[0];
         var model = new DataModel(goodsModel);
         model.save(function(err,goods){
 
@@ -67,6 +73,37 @@ router.get('/to-list', function(req, res) {
     res.render('listgoods', { title: '公益拍卖' });
 });
 
+router.get('/manage/to-list', function(req, res) {
+    res.render('manage/goodslist');
+});
+router.get('/manage/find-goods-list/:type', function(req, res,next) {
+
+    DataModel.list(req.param('type'),function(err,orgs){
+
+        if(err) return next(err);
+        DataModel.totalCount(req.param('type'),function(err,count){
+            if(err) return next(err);
+            var pageModel = {};
+            pageModel.sEcho = req.param('sEcho');
+            pageModel.iTotalRecords = count;
+            pageModel.iTotalDisplayRecords = count;
+            pageModel.aaData = orgs;
+            pageModel.iDisplayLength = count;
+            pageModel.iDisplayStart = 0;
+            res.send(pageModel);
+        })
+
+    });
+
+});
+router.get('/delete/:id/:type', function(req, res) {
+    var orgTypeValue = req.param('type');
+    var id = req.param('id')
+    DataModel.removeFromSSetAndStr(id,orgTypeValue,function(err){
+        res.send('SUCCESS');
+    });
+
+});
 router.get('/find-goods-list/:type', function(req, res,next) {
     DataModel.list(req.param('type'),function(err,orgs){
 
@@ -103,5 +140,26 @@ router.get('/find-highest-price', function(req, res,next) {
 
         res.send({highestPrice:price});
     });
+});
+router.get('/manage/to-price-list/:id', function(req, res) {
+    var id = req.param('id');
+    res.render('manage/pricelist', { id: id });
+});
+router.get('/manage/get-price-list/:id',function(req, res,next){
+    DataModel.findAllZSetData(req.param('id'),function(err,goodsList){
+        if(err) return next(err);
+
+        res.send({goods:goodsList});
+    });
+});
+router.get('/manage/delete-price/:goodsId/:mobile',function(req,res,next){
+    var goodsId = req.param('goodsId');
+    var mobile = req.param('mobile');
+
+    DataModel.removeFromSSet(goodsId,mobile,function(err){
+        if(err) return next(err);
+        res.send("SUCCESS");
+    });
+    res.send("SUCCESS");
 });
 module.exports = router;
