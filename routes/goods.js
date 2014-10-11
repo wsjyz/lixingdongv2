@@ -19,12 +19,10 @@ router.get('/', function(req, res) {
 router.get('/to-add', function(req, res) {
     var titleValue = '添加竞拍品';
     var goodsId = req.param('goodsId');
-    if(goodsId){
-        res.render('manage/addgoods', { goodsId: goodsId});
-    }else{
-        res.render('manage/addgoods');
+    if(!goodsId){
+       goodsId = null;
     }
-
+    res.render('manage/addgoods', { goodsId: goodsId});
 });
 
 router.post('/add',function(req, res,next) {
